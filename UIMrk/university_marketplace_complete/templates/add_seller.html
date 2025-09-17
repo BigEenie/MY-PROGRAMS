@@ -1,0 +1,208 @@
+{% extends "base.html" %}
+
+{% block title %}Add Seller - Admin Panel - University Marketplace{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Header -->
+            <div class="text-center mb-5">
+                <h1 class="display-5 text-primary">
+                    <i class="fas fa-user-plus me-3"></i>Add New Seller
+                </h1>
+                <p class="lead text-muted">Register a new seller in the marketplace</p>
+            </div>
+
+            <!-- Add Seller Form -->
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-user-circle me-2"></i>Seller Information
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">  
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">
+                                        <i class="fas fa-user me-1"></i>Full Name *
+                                    </label>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="name" 
+                                           name="name" 
+                                           placeholder="Enter seller's full name"
+                                           required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="department" class="form-label">
+                                        <i class="fas fa-graduation-cap me-1"></i>Department *
+                                    </label>
+                                    <select class="form-select" id="department" name="department" required>
+                                        <option value="">Select department</option>
+                                        <option value="Computer Science">Computer Science</option>
+                                        <option value="Business Administration">Business Administration</option>
+                                        <option value="Engineering">Engineering</option>
+                                        <option value="Medicine">Medicine</option>
+                                        <option value="Law">Law</option>
+                                        <option value="Arts & Sciences">Arts & Sciences</option>
+                                        <option value="Education">Education</option>
+                                        <option value="Psychology">Psychology</option>
+                                        <option value="Economics">Economics</option>
+                                        <option value="Mathematics">Mathematics</option>
+                                        <option value="Biology">Biology</option>
+                                        <option value="Chemistry">Chemistry</option>
+                                        <option value="Physics">Physics</option>
+                                        <option value="History">History</option>
+                                        <option value="English">English</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">
+                                        <i class="fas fa-envelope me-1"></i>Email Address *
+                                    </label>
+                                    <input type="email" 
+                                           class="form-control" 
+                                           id="email" 
+                                           name="email" 
+                                           placeholder="seller@university.edu"
+                                           required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="phone" class="form-label">
+                                        <i class="fas fa-phone me-1"></i>Phone Number *
+                                    </label>
+                                    <input type="tel" 
+                                           class="form-control" 
+                                           id="phone" 
+                                           name="phone" 
+                                           placeholder="+1 (555) 123-4567"
+                                           required>
+                                </div>
+                            </div>
+                        </div>
+
+                     <div class="mb-3">
+    <label for="profile_image" class="form-label">
+        <i class="fas fa-image me-1"></i>Profile Image
+    </label>
+    
+    <!-- File Upload Option -->
+    <div class="mb-3">
+        <label for="profile_image_file" class="form-label">
+            <i class="fas fa-upload me-1"></i>Upload Image File
+        </label>
+        <input type="file" 
+               class="form-control" 
+               id="profile_image_file" 
+               name="profile_image_file"
+               accept="image/png,image/jpeg,image/jpg,image/gif">
+        <div class="form-text">
+            Upload a profile photo (PNG, JPG, JPEG, GIF - Max 16MB)
+        </div>
+    </div>
+    
+    <!-- OR Divider -->
+    <div class="text-center my-3">
+        <span class="badge bg-secondary">OR</span>
+    </div>
+    
+    <!-- URL Option -->
+    <div class="mb-3">
+        <label for="profile_image_url" class="form-label">
+            <i class="fas fa-link me-1"></i>Image URL
+        </label>
+        <input type="url" 
+               class="form-control" 
+               id="profile_image_url" 
+               name="profile_image_url" 
+               placeholder="https://example.com/profile-photo.jpg">
+        <div class="form-text">
+            Or provide a URL to an existing image. If both are provided, uploaded file takes priority.
+        </div>
+    </div>
+</div>
+
+                        <div class="mb-4">
+                            <label for="bio" class="form-label">
+                                <i class="fas fa-align-left me-1"></i>Bio/Description
+                            </label>
+                            <textarea class="form-control" 
+                                      id="bio" 
+                                      name="bio" 
+                                      rows="3" 
+                                      placeholder="Brief description about the seller and what they offer..."></textarea>
+                            <div class="form-text">
+                                Optional: A short description that will help buyers learn more about the seller.
+                            </div>
+                        </div>
+
+                        <!-- Seller Guidelines -->
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle me-2"></i>
+                            <strong>Seller Guidelines:</strong>
+                            <ul class="mb-0 mt-2">
+                                <li>All sellers must be verified students or approved local marketers</li>
+                                <li>Sellers are responsible for maintaining accurate product information</li>
+                                <li>All transactions must follow the cash-on-delivery policy</li>
+                                <li>Sellers must respond to buyer inquiries promptly</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="{{ url_for('admin') }}" 
+                               class="btn btn-outline-secondary me-md-2">
+                                <i class="fas fa-arrow-left me-1"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-user-plus me-1"></i>Add Seller
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Quick Add Tips -->
+            <div class="card mt-4 border-primary">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-lightbulb me-2"></i>Tips for Adding Sellers
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Verify the seller's university email address
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Ensure contact information is current and accurate
+                        </li>
+                        <li class="mb-2">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Use a professional profile photo when available
+                        </li>
+                        <li class="mb-0">
+                            <i class="fas fa-check text-success me-2"></i>
+                            Provide clear guidelines about marketplace policies
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

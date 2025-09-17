@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ settings.university_name }} - {{ settings.portal_title }}</title>
+    <meta name="description" content="Access comprehensive course materials for all faculties and departments at {{ settings.university_name }}, Nigeria">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Loading Course Materials Portal...</h3>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="{{ url_for('static', filename='images/ui-logo.svg') }}" alt="UI Logo" class="nav-logo">
+                <div class="nav-text">
+                    <h1>{{ settings.university_name }}</h1>
+                    <span>{{ settings.portal_title }}</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#materials" class="nav-link">Materials</a>
+                <a href="#developer" class="nav-link">About Developer</a>
+            </div>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-pattern"></div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Welcome to <span class="text-gradient">{{ settings.university_name }}</span>
+                    <br>{{ settings.portal_title }}
+                </h1>
+                <p class="hero-description">
+                    Access comprehensive study materials, lecture notes, and academic resources 
+                    for all faculties and departments. Your gateway to academic excellence.
+                </p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span class="stat-number" data-target="{{ materials.faculties|length }}">0</span>
+                        <span class="stat-label">Faculties</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-book"></i>
+                        <span class="stat-number" data-target="{{ materials.faculties|map(attribute='departments')|map('length')|sum }}">0</span>
+                        <span class="stat-label">Departments</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span class="stat-number" data-target="1000">0</span>
+                        <span class="stat-label">Resources</span>
+                    </div>
+                </div>
+                <button class="cta-button" onclick="scrollToMaterials()">
+                    <i class="fas fa-arrow-down"></i>
+                    Explore Materials
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-input" placeholder="Search for courses, departments, or materials...">
+                    <button class="search-button">
+                        <i class="fas fa-filter"></i>
+                    </button>
+                </div>
+                <div id="search-results" class="search-results"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materials Section -->
+    <section id="materials" class="materials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Course Materials</h2>
+                <p class="section-description">Select your faculty, department, and level to access course materials</p>
+            </div>
+
+            <!-- Breadcrumb Navigation -->
+            <div class="breadcrumb" id="breadcrumb">
+                <span class="breadcrumb-item active">
+                    <i class="fas fa-home"></i> Home
+                </span>
+            </div>
+
+            <!-- Navigation Steps -->
+            <div class="navigation-steps">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <span>Select Faculty</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <span>Choose Department</span>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <span>Pick Level</span>
+                </div>
+            </div>
+
+            <!-- Faculty Selection -->
+            <div id="faculty-selection" class="selection-container active">
+                <h3 class="selection-title">
+                    <i class="fas fa-university"></i>
+                    Select Your Faculty
+                </h3>
+                <div class="cards-grid" id="faculty-grid">
+                    {% for faculty in materials.faculties %}
+                    <div class="card faculty-card" data-faculty-id="{{ faculty.id }}" onclick="selectFaculty('{{ faculty.id }}')">
+                        <div class="card-icon">
+                            <i class="{{ faculty.icon }}"></i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">{{ faculty.name }}</h4>
+                            <p class="card-description">{{ faculty.description }}</p>
+                            <div class="card-stats">
+                                <span><i class="fas fa-building"></i> {{ faculty.departments|length }} Departments</span>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Department Selection -->
+            <div id="department-selection" class="selection-container">
+                <div class="back-button" onclick="goBack('faculty')">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Faculties
+                </div>
+                <h3 class="selection-title">
+                    <i class="fas fa-building"></i>
+                    Select Your Department
+                </h3>
+                <div class="cards-grid" id="department-grid">
+                    <!-- Department cards will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Level Selection -->
+            <div id="level-selection" class="selection-container">
+                <div class="back-button" onclick="goBack('department')">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Departments
+                </div>
+                <h3 class="selection-title">
+                    <i class="fas fa-layer-group"></i>
+                    Select Your Level
+                </h3>
+                <div class="cards-grid" id="level-grid">
+                    <!-- Level cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developer Profile Section -->
+    <section id="developer" class="developer-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About the Developer</h2>
+                <p class="section-description">Meet the creator of this Course Materials Portal</p>
+            </div>
+
+            <div class="developer-profile">
+                <div class="profile-card">
+                    <div class="profile-image">
+                        <!-- 
+                        EDIT YOUR PROFILE PICTURE HERE:
+                        Replace the src attribute below with your image URL or use a local image file
+                        Example: src="images/your-photo.jpg" or src="https://your-image-url.com/photo.jpg"
+                        If you don't have an image, the placeholder icon will be shown
+                        -->
+                        <!--<div class="profile-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>-->
+                        
+                        <img src="{{ url_for('static', filename='images/use.jpeg') }}" alt="Developer Photo" class="profile-img">
+                        
+                    </div>
+                    
+                    <div class="profile-info">
+                        
+                        <h3 class="profile-name">Emmyfest</h3>
+                        <p class="profile-title">Agricultural & Environmental Engineering <br> • University of Ibadan</p>
+                        <p class="profile-level">200 Level</p>
+                        
+                        <div class="profile-badges">
+                            <span class="badge"><i class="fas fa-graduation-cap"></i> UI Student</span>
+                            <span class="badge"><i class="fas fa-code"></i> Developer</span>
+                            <span class="badge"><i class="fas fa-heart"></i> UI Enthusiast</span>
+                        </div>
+                        
+                        <div class="profile-description">
+                            <!-- 
+                            EDIT YOUR BIO HERE:
+                            Replace this text with your personal description
+                            -->
+                            <p>
+                                I am a passionate student at the University of Ibadan, dedicated to making 
+                                academic resources more accessible to fellow students. This portal was created 
+                                to help UI students easily find and access course materials across all faculties 
+                                and departments.
+                            </p>
+                            <p>
+                                As a UI student myself, I understand the challenges of organizing and finding 
+                                relevant academic materials. This platform aims to bridge that gap and create 
+                                a seamless experience for academic resource discovery.
+                            </p>
+                        </div>
+                        
+                        <div class="profile-contact">
+                            <!-- 
+                            EDIT YOUR CONTACT INFORMATION HERE:
+                            Replace the href attributes and text with your actual contact details
+                            -->
+                            <h4>Get in Touch</h4>
+                            <div class="contact-links">
+                                <a href="mailto:your.email@example.com" class="contact-link">
+                                    <i class="fas fa-envelope"></i>
+                                    emmyfest643@gmail.com
+                                </a>
+                                <a href="https://github.com/yourusername" class="contact-link" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                    GitHub Profile
+                                </a>
+                                <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+                                    <i class="fab fa-linkedin"></i>
+                                    LinkedIn Profile
+                                </a>
+                                <!-- Add more contact links as needed -->
+                            </div>
+                        </div>
+                        
+                        <div class="profile-stats">
+                            <div class="stat-item">
+                                <i class="fas fa-calendar"></i>
+                                <span class="stat-label">Project Started</span>
+                                <span class="stat-value">2024</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-users"></i>
+                                <span class="stat-label">Helping Students</span>
+                                <span class="stat-value">UI Community</span>
+                            </div>
+                            <div class="stat-item">
+                                <i class="fas fa-code"></i>
+                                <span class="stat-label">Built With</span>
+                                <span class="stat-value">Python & Love</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tech-stack-section">
+                    <h4>Technical Implementation</h4>
+                    <div class="tech-grid">
+                        <div class="tech-item">
+                            <i class="fab fa-python"></i>
+                            <span>Python Flask</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fab fa-google-drive"></i>
+                            <span>Google Drive API</span>
+                        </div>
+                        <div class="tech-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Responsive Design</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="acknowledgments">
+                    <h4>Special Thanks</h4>
+                    <ul>
+                        <li><strong>University of Ibadan</strong> - For providing an excellent academic environment</li>
+                        <li><strong>Fellow UI Students</strong> - For feedback and continuous support</li>
+                        <li><strong>Co. Developers and Friends</strong> - For their dedication to quality education <br> Simplicity - Virtuoso - Teewize - Isaac - Aishat</li>
+                        <li><strong>The Open Source Community</strong> - For amazing tools and resources</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="{{ url_for('static', filename='images/ui-logo.svg') }}" alt="UI Logo" class="footer-logo">
+                        <h3>{{ settings.university_name }}</h3>
+                        <p>{{ settings.university_motto }}</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#materials">Course Materials</a></li>
+                        <li><a href="{{ url_for('about') }}">About Developer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> {{ settings.university_address }}</p>
+                    <p><i class="fas fa-phone"></i> {{ settings.university_phone }}</p>
+                    <p><i class="fas fa-envelope"></i> {{ settings.university_email }}</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow UI</h4>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/pages/University-of-Ibadan/226007464136327"><i class="fab fa-facebook"></i></a>
+                        <a href="https://pgcollege.ui.edu.ng/"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/unibadanng/?hl=en"><i class="fab fa-instagram"></i></a>
+                        <a href="https://ng.linkedin.com/company/university-of-ibadan_2"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 {{ settings.university_name }} {{ settings.portal_title }}. All rights reserved.</p>
+                <p>Developed with ❤️ for UI Students</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Make materials data available globally
+        window.materialsData = {{ materials | tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='js/config.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

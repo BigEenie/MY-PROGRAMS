@@ -1,0 +1,250 @@
+{% extends "base.html" %}
+
+{% block title %}Add Alumni Profile - Alumni Directory{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <!-- Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-6 fw-bold mb-2">Add Alumni Profile</h1>
+            <p class="lead text-muted">Join our alumni directory and connect with fellow graduates</p>
+        </div>
+    </div>
+
+    <!-- Form -->
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-body">
+                    <form method="POST" id="alumniForm" novalidate>
+                        <!-- Personal Information Section -->
+                        <div class="mb-4">
+                            <h5 class="card-title mb-3">
+                                <i data-feather="user" class="me-2"></i>
+                                Personal Information
+                            </h5>
+                            
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="first_name" class="form-label">First Name *</label>
+                                    <input type="text" class="form-control" id="first_name" name="first_name" required>
+                                    <div class="invalid-feedback">Please provide your first name.</div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="last_name" class="form-label">Last Name *</label>
+                                    <input type="text" class="form-control" id="last_name" name="last_name" required>
+                                    <div class="invalid-feedback">Please provide your last name.</div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email Address *</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                    <div class="invalid-feedback">Please provide a valid email address.</div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone" name="phone">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Academic Information Section -->
+                        <div class="mb-4">
+                            <h5 class="card-title mb-3">
+                                <i data-feather="graduation-cap" class="me-2"></i>
+                                Academic Background
+                            </h5>
+                            
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label for="graduation_year" class="form-label">Graduation Year *</label>
+                                    <select class="form-select" id="graduation_year" name="graduation_year" required>
+                                        <option value="">Select Year</option>
+                                        {% for year in range(2024, 1959, -1) %}
+                                            <option value="{{ year }}">{{ year }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <div class="invalid-feedback">Please select your graduation year.</div>
+                                </div>
+                                
+                                <div class="col-md-8">
+                                    <label for="degree" class="form-label">Degree *</label>
+                                    <input type="text" class="form-control" id="degree" name="degree" 
+                                           placeholder="e.g., Bachelor of Science, Master of Business Administration" required>
+                                    <div class="invalid-feedback">Please provide your degree.</div>
+                                </div>
+                                
+                                <div class="col-12">
+                                    <label for="field_of_study" class="form-label">Field of Study *</label>
+                                    <input type="text" class="form-control" id="field_of_study" name="field_of_study" 
+                                           placeholder="e.g., Computer Science, Business Administration, Engineering" required>
+                                    <div class="invalid-feedback">Please provide your field of study.</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Current Information Section -->
+                        <div class="mb-4">
+                            <h5 class="card-title mb-3">
+                                <i data-feather="briefcase" class="me-2"></i>
+                                Current Professional Information
+                            </h5>
+                            
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="current_position" class="form-label">Current Position</label>
+                                    <input type="text" class="form-control" id="current_position" name="current_position" 
+                                           placeholder="e.g., Software Engineer, Marketing Manager">
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="current_company" class="form-label">Current Company</label>
+                                    <input type="text" class="form-control" id="current_company" name="current_company" 
+                                           placeholder="e.g., Google, Microsoft, Self-employed">
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="current_location" class="form-label">Current Location</label>
+                                    <input type="text" class="form-control" id="current_location" name="current_location" 
+                                           placeholder="e.g., San Francisco, CA, Remote">
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="industry" class="form-label">Industry</label>
+                                    <input type="text" class="form-control" id="industry" name="industry" 
+                                           placeholder="e.g., Technology, Healthcare, Finance">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Information Section -->
+                        <div class="mb-4">
+                            <h5 class="card-title mb-3">
+                                <i data-feather="globe" class="me-2"></i>
+                                Additional Information
+                            </h5>
+                            
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <label for="bio" class="form-label">Biography</label>
+                                    <textarea class="form-control" id="bio" name="bio" rows="4" 
+                                              placeholder="Tell us about your professional journey, interests, or achievements..."></textarea>
+                                    <div class="form-text">Share your story to help fellow alumni connect with you.</div>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="linkedin_url" class="form-label">LinkedIn Profile</label>
+                                    <input type="url" class="form-control" id="linkedin_url" name="linkedin_url" 
+                                           placeholder="https://linkedin.com/in/yourprofile">
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label for="website_url" class="form-label">Personal Website</label>
+                                    <input type="url" class="form-control" id="website_url" name="website_url" 
+                                           placeholder="https://yourwebsite.com">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Privacy Notice -->
+                        <div class="alert alert-info mb-4">
+                            <h6 class="alert-heading">
+                                <i data-feather="info" class="me-2"></i>
+                                Privacy Notice
+                            </h6>
+                            <p class="mb-0">
+                                Your information will be used to connect you with fellow alumni and current students. 
+                                You can update or remove your profile at any time by contacting us.
+                            </p>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                                <i data-feather="arrow-left" class="me-1"></i>
+                                Cancel
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i data-feather="save" class="me-1"></i>
+                                Add Profile
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize feather icons
+    feather.replace();
+    
+    // Form validation
+    const form = document.getElementById('alumniForm');
+    
+    form.addEventListener('submit', function(event) {
+        if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        
+        form.classList.add('was-validated');
+    });
+    
+    // Real-time validation feedback
+    const requiredInputs = form.querySelectorAll('input[required], select[required]');
+    requiredInputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            if (this.checkValidity()) {
+                this.classList.remove('is-invalid');
+                this.classList.add('is-valid');
+            } else {
+                this.classList.remove('is-valid');
+                this.classList.add('is-invalid');
+            }
+        });
+        
+        input.addEventListener('input', function() {
+            if (this.classList.contains('was-validated') || this.classList.contains('is-invalid')) {
+                if (this.checkValidity()) {
+                    this.classList.remove('is-invalid');
+                    this.classList.add('is-valid');
+                } else {
+                    this.classList.remove('is-valid');
+                    this.classList.add('is-invalid');
+                }
+            }
+        });
+    });
+    
+    // Email validation
+    const emailInput = document.getElementById('email');
+    emailInput.addEventListener('blur', function() {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (this.value && !emailRegex.test(this.value)) {
+            this.setCustomValidity('Please enter a valid email address');
+        } else {
+            this.setCustomValidity('');
+        }
+    });
+    
+    // URL validation
+    const urlInputs = ['linkedin_url', 'website_url'];
+    urlInputs.forEach(inputId => {
+        const input = document.getElementById(inputId);
+        input.addEventListener('blur', function() {
+            if (this.value && !this.value.startsWith('http')) {
+                this.value = 'https://' + this.value;
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

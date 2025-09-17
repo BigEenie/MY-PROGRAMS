@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Create Group - University of Ibadan Social Platform{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-ui-blue text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-users me-2"></i>Create New Group
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST">
+                        <div class="mb-4">
+                            <label for="group_name" class="form-label">Group Name *</label>
+                            <input type="text" class="form-control" id="group_name" name="group_name" 
+                                   placeholder="Enter group name (e.g., Computer Science Study Group)" 
+                                   maxlength="100" required>
+                            <div class="form-text">
+                                <span id="nameCharCount">0</span>/100 characters
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="department" class="form-label">Department (Optional)</label>
+                            <select class="form-select" id="department" name="department">
+                                <option value="">All Departments</option>
+                                {% for dept in departments %}
+                                    <option value="{{ dept }}">{{ dept }}</option>
+                                {% endfor %}
+                            </select>
+                            <div class="form-text">
+                                Choose a department to restrict group membership to that department only
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h6 class="card-title">
+                                        <i class="fas fa-info-circle me-1"></i>Group Guidelines
+                                    </h6>
+                                    <ul class="mb-0">
+                                        <li>Keep discussions relevant to academic topics</li>
+                                        <li>Be respectful to all group members</li>
+                                        <li>Use appropriate language and maintain professionalism</li>
+                                        <li>Share resources and help fellow students</li>
+                                        <li>As group creator, you can manage membership</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('groups') }}" class="btn btn-secondary">
+                                <i class="fas fa-times me-1"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-ui-blue" id="submitBtn">
+                                <i class="fas fa-plus me-1"></i>Create Group
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const groupNameInput = document.getElementById('group_name');
+    const nameCharCount = document.getElementById('nameCharCount');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // Character counter
+    function updateCharCount() {
+        const count = groupNameInput.value.length;
+        nameCharCount.textContent = count;
+        
+        if (count > 80) {
+            nameCharCount.parentElement.className = 'form-text text-warning';
+        } else if (count >= 100) {
+            nameCharCount.parentElement.className = 'form-text text-danger';
+        } else {
+            nameCharCount.parentElement.className = 'form-text';
+        }
+        
+        // Disable submit if over limit
+        submitBtn.disabled = count > 100;
+    }
+    
+    groupNameInput.addEventListener('input', updateCharCount);
+    updateCharCount(); // Initial count
+    
+    // Form submission with loading state
+    document.querySelector('form').addEventListener('submit', function(e) {
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Creating...';
+        submitBtn.disabled = true;
+    });
+});
+</script>
+{% endblock %}

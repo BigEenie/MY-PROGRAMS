@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %}Login - University of Ibadan Social Platform{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <i class="fas fa-sign-in-alt fa-3x text-ui-blue mb-3"></i>
+                    <h2 class="fw-bold text-ui-blue">Welcome Back</h2>
+                    <p class="text-muted">Sign in to your UI Social account</p>
+                </div>
+                
+                <form method="POST" class="auth-form">
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <input type="email" class="form-control" id="email" name="email" 
+                                   placeholder="your.email@ui.edu.ng" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="password" class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                            <input type="password" class="form-control" id="password" name="password" 
+                                   placeholder="Enter your password" required>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-ui-blue w-100 mb-3">
+                        <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                    </button>
+                </form>
+                
+                <div class="auth-footer">
+                    <p class="text-center text-muted">
+                        Don't have an account?
+                        <a href="{{ url_for('register') }}" class="text-ui-blue fw-bold">Register here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

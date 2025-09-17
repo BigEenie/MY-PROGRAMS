@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoSketch Interface</title>
+</head>
+<body>
+    <h2>Enter Drawing Instruction</h2>
+    <form method="POST">
+        <input type="text" name="instruction" placeholder="e.g., Draw a circle of radius 10 at (0, 0)" required>
+        <button type="submit">Draw</button>
+    </form>
+
+    {% if error %}
+        <p style="color: red;">Error: {{ error }}</p>
+    {% endif %}
+
+    {% if image %}
+        <h3>Output:</h3>
+        <img src="/{{ image }}" alt="Drawing output">
+    {% endif %}
+</body>
+</html>

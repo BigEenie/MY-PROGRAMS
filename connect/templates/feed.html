@@ -1,0 +1,243 @@
+{% extends "base.html" %}
+
+{% block title %}
+    {% if feed_type == 'department' %}Department Feed{% else %}Public Feed{% endif %} - University of Ibadan Social Platform
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Feed Header -->
+    <div class="feed-header">
+        <div class="row align-items-center mb-4">
+            <div class="col-md-6">
+                <h1 class="feed-title">
+                    {% if feed_type == 'department' %}
+                        <i class="fas fa-building me-2"></i>{{ user.department }} Feed
+                    {% else %}
+                        <i class="fas fa-globe me-2"></i>Public Feed
+                    {% endif %}
+                </h1>
+                <p class="text-muted">
+                    {% if feed_type == 'department' %}
+                        Posts from your department colleagues
+                    {% else %}
+                        All public posts from the UI community
+                    {% endif %}
+                </p>
+            </div>
+            <div class="col-md-6 text-end">
+                <div class="btn-group" role="group">
+                    <a href="{{ url_for('feed') }}" 
+                       class="btn {% if feed_type != 'department' %}btn-ui-blue{% else %}btn-outline-secondary{% endif %}">
+                        <i class="fas fa-globe me-1"></i>Public
+                    </a>
+                    <a href="{{ url_for('feed', type='department') }}" 
+                       class="btn {% if feed_type == 'department' %}btn-ui-blue{% else %}btn-outline-secondary{% endif %}">
+                        <i class="fas fa-building me-1"></i>{{ user.department }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Main Feed -->
+        <div class="col-lg-8">
+            <!-- Create Post Quick Access -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        {% if user.profile_photo %}
+                            <img src="{{ url_for('uploaded_file', filename=user.profile_photo) }}" 
+                                 alt="{{ user.full_name }}" class="post-avatar me-3">
+                        {% else %}
+                            <div class="post-avatar-placeholder me-3">
+                                <i class="fas fa-user"></i>
+                            </div>
+                        {% endif %}
+                        <div class="flex-grow-1">
+                            <a href="{{ url_for('create_post') }}" 
+                               class="form-control text-decoration-none text-muted create-post-link">
+                                What's on your mind, {{ user.full_name.split()[0] }}?
+                            </a>
+                        </div>
+                        <div class="ms-3">
+                            <a href="{{ url_for('create_post') }}" class="btn btn-ui-blue">
+                                <i class="fas fa-plus me-1"></i>Post
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Posts Feed -->
+            {% if posts %}
+                {% for post in posts %}
+                    <div class="post-card">
+                        <div class="post-header">
+                            <div class="d-flex align-items-center">
+                                {% if post.user.profile_photo %}
+                                    <img src="{{ url_for('uploaded_file', filename=post.user.profile_photo) }}" 
+                                         alt="{{ post.user.full_name }}" class="post-avatar">
+                                {% else %}
+                                    <div class="post-avatar-placeholder">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                {% endif %}
+                                <div class="ms-3">
+                                    <h6 class="mb-0">
+                                        <a href="{{ url_for('profile', username=post.user.username) }}" 
+                                           class="text-decoration-none">
+                                            {{ post.user.full_name }}
+                                        </a>
+                                    </h6>
+                                    <small class="text-muted">
+                                        @{{ post.user.username }} • {{ post.timestamp('%B %d at %I:%M %p') }}
+                                        {% if post.visibility == 'department' %}
+                                            <span class="badge bg-secondary ms-2">{{ post.user.department }}</span>
+                                        {% endif %}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="post-content">
+                            <p>{{ post.content }}</p>
+                            {% if post.image_path %}
+                                <div class="post-image">
+                                    <img src="{{ url_for('uploaded_file', filename=post.image_path) }}" 
+                                         alt="Post image" class="img-fluid rounded">
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <div class="post-actions">
+                            <button class="btn btn-sm like-btn {% if post.user_has_liked %}liked{% endif %}" 
+                                    data-post-id="{{ post.id }}">
+                                <i class="fas fa-heart me-1"></i>
+                                <span class="like-count">{{ post.likes_count }}</span>
+                            </button>
+                            
+                            <button class="btn btn-sm btn-outline-secondary comment-toggle" 
+                                    data-bs-toggle="collapse" data-bs-target="#comments-{{ post.id }}">
+                                <i class="fas fa-comment me-1"></i>
+                                {{ post.comments_count }} Comments
+                            </button>
+                        </div>
+                        
+                        <!-- Comments Section -->
+                        <div class="collapse mt-3" id="comments-{{ post.id }}">
+                            <div class="comments-section">
+                                {% for comment in post.comments %}
+                                    <div class="comment">
+                                        <div class="d-flex">
+                                            {% if comment.user.profile_photo %}
+                                                <img src="{{ url_for('uploaded_file', filename=comment.user.profile_photo) }}" 
+                                                     alt="{{ comment.user.full_name }}" class="comment-avatar">
+                                            {% else %}
+                                                <div class="comment-avatar-placeholder">
+                                                    <i class="fas fa-user"></i>
+                                                </div>
+                                            {% endif %}
+                                            <div class="comment-content">
+                                                <div class="comment-header">
+                                                    <strong>
+                                                        <a href="{{ url_for('profile', username=comment.user.username) }}" 
+                                                           class="text-decoration-none">
+                                                            {{ comment.user.full_name }}
+                                                        </a>
+                                                    </strong>
+                                                    <small class="text-muted">{{ comment.created_at.strftime('%B %d at %I:%M %p') }}</small>
+                                                </div>
+                                                <p class="mb-0">{{ comment.content }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                
+                                <!-- Add Comment Form -->
+                                <form method="POST" action="{{ url_for('comment_post', post_id=post.id) }}" class="mt-3">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="content" 
+                                               placeholder="Write a comment..." required>
+                                        <button class="btn btn-ui-blue" type="submit">
+                                            <i class="fas fa-paper-plane"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-stream fa-4x text-muted mb-3"></i>
+                    <h5 class="text-muted">No posts available</h5>
+                    {% if feed_type == 'department' %}
+                        <p class="text-muted">No one from {{ user.department }} has posted yet. Be the first!</p>
+                    {% else %}
+                        <p class="text-muted">No public posts available. Start the conversation!</p>
+                    {% endif %}
+                    <a href="{{ url_for('create_post') }}" class="btn btn-ui-blue">
+                        <i class="fas fa-plus me-1"></i>Create First Post
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4">
+            <!-- Feed Stats -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-light">
+                    <h6 class="mb-0">
+                        <i class="fas fa-chart-bar me-2"></i>Feed Stats
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="stat-item mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Total Posts</span>
+                            <strong>{{ posts|length }}</strong>
+                        </div>
+                    </div>
+                    <div class="stat-item mb-3">
+                        <div class="d-flex justify-content-between">
+                            <span>Your Department</span>
+                            <strong>{{ user.department }}</strong>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="d-flex justify-content-between">
+                            <span>Your Role</span>
+                            <strong>{{ user.role.title() }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-light">
+                    <h6 class="mb-0">
+                        <i class="fas fa-lightning-bolt me-2"></i>Quick Actions
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <a href="{{ url_for('create_post') }}" class="btn btn-ui-blue btn-sm">
+                            <i class="fas fa-plus me-1"></i>Create New Post
+                        </a>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-home me-1"></i>Back to Dashboard
+                        </a>
+                        <a href="{{ url_for('profile', username=user.username) }}" class="btn btn-outline-secondary btn-sm">
+                            <i class="fas fa-user me-1"></i>View My Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

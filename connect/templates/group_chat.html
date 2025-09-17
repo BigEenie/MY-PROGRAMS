@@ -1,0 +1,220 @@
+{% extends "base.html" %}
+
+{% block title %}{{ group.name }} - Group Chat{% endblock %}
+
+{% block content %}
+<div class="container-fluid chat-container">
+    <div class="row h-100">
+        <div class="col-12">
+            <!-- Group Chat Header -->
+            <div class="chat-header">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <a href="{{ url_for('groups') }}" class="btn btn-outline-secondary btn-sm me-3">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                        <div class="group-icon">
+                            <i class="fas fa-users fa-2x text-ui-blue"></i>
+                        </div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">{{ group.name }}</h5>
+                            <small class="text-muted">
+                                {{ group.member_count }} members
+                                {% if group.department %} • {{ group.department }}{% endif %}
+                            </small>
+                        </div>
+                    </div>
+                    <div class="chat-actions">
+                        <button class="btn btn-outline-secondary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#groupInfoModal">
+                            <i class="fas fa-info-circle me-1"></i>Info
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group Chat Messages -->
+            <div class="chat-messages" id="chatMessages">
+                {% for message in messages %}
+                    <div class="message group-message {% if message.sender_id == user.id %}sent{% else %}received{% endif %}">
+                        <div class="message-content">
+                            {% if message.sender_id != user.id %}
+                                <div class="message-sender">
+                                    <strong>{{ message.sender.full_name }}</strong>
+                                </div>
+                            {% endif %}
+                            <p class="mb-1">{{ message.content }}</p>
+                            <small class="message-time text-muted">
+                                {{ message.created_at[:19].replace('T', ' ') }}
+                            </small>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Group Chat Input -->
+            <div class="chat-input">
+                <form id="messageForm" class="d-flex align-items-center">
+                    <input type="text" class="form-control me-2" id="messageInput" 
+                           placeholder="Type a message to the group..." maxlength="500" required>
+                    <button type="submit" class="btn btn-ui-blue">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Group Info Modal -->
+<div class="modal fade" id="groupInfoModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">{{ group.name }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="group-details">
+                    <div class="mb-3">
+                        <strong>Created by:</strong> {{ group.creator.full_name }}
+                    </div>
+                    {% if group.department %}
+                        <div class="mb-3">
+                            <strong>Department:</strong> {{ group.department }}
+                        </div>
+                    {% endif %}
+                    <div class="mb-3">
+                        <strong>Created:</strong> {{ group.created_at[:10] }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Members ({{ group.member_count }}):</strong>
+                        <div class="members-list mt-2">
+                            {% for member in group.members %}
+                                <div class="member-item-detail d-flex align-items-center mb-2">
+                                    {% if member.profile_photo %}
+                                        <img src="{{ url_for('uploaded_file', filename=member.profile_photo) }}" 
+                                             alt="{{ member.full_name }}" class="member-avatar-small">
+                                    {% else %}
+                                        <div class="member-avatar-small-placeholder">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    {% endif %}
+                                    <div class="ms-2">
+                                        <div class="member-name">{{ member.full_name }}</div>
+                                        <small class="text-muted">@{{ member.username }}</small>
+                                    </div>
+                                    {% if member.id == group.creator.id %}
+                                        <span class="badge bg-ui-blue ms-auto">Creator</span>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Initialize Socket.IO
+const socket = io();
+const currentUserId = '{{ user.id }}';
+const groupId = '{{ group.id }}';
+
+// Join group room for real-time messaging
+socket.emit('join_group', {group_id: groupId});
+
+// Message form handling
+document.getElementById('messageForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const messageInput = document.getElementById('messageInput');
+    const content = messageInput.value.trim();
+    
+    if (!content) return;
+    
+    // Send group message via Socket.IO
+    socket.emit('send_group_message', {
+        group_id: groupId,
+        content: content
+    });
+    
+    // Clear input
+    messageInput.value = '';
+});
+
+// Handle received group messages
+socket.on('group_message_received', function(data) {
+    if (data.group_id === groupId) {
+        addMessageToChat(data, data.sender_id === currentUserId);
+    }
+});
+
+// Add message to chat UI
+function addMessageToChat(message, isSent) {
+    const chatMessages = document.getElementById('chatMessages');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message group-message ${isSent ? 'sent' : 'received'}`;
+    
+    const timestamp = new Date(message.created_at).toLocaleString();
+    
+    let senderInfo = '';
+    if (!isSent && message.sender) {
+        senderInfo = `<div class="message-sender"><strong>${escapeHtml(message.sender.full_name)}</strong></div>`;
+    }
+    
+    messageDiv.innerHTML = `
+        <div class="message-content">
+            ${senderInfo}
+            <p class="mb-1">${escapeHtml(message.content)}</p>
+            <small class="message-time text-muted">${timestamp}</small>
+        </div>
+    `;
+    
+    chatMessages.appendChild(messageDiv);
+    scrollToBottom();
+}
+
+// Escape HTML to prevent XSS
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+// Scroll to bottom of chat
+function scrollToBottom() {
+    const chatMessages = document.getElementById('chatMessages');
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Auto-resize message input
+const messageInput = document.getElementById('messageInput');
+messageInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        document.getElementById('messageForm').dispatchEvent(new Event('submit'));
+    }
+});
+
+// Initial scroll to bottom
+document.addEventListener('DOMContentLoaded', function() {
+    scrollToBottom();
+});
+
+// Handle connection status
+socket.on('connect', function() {
+    console.log('Connected to group chat server');
+});
+
+socket.on('disconnect', function() {
+    console.log('Disconnected from group chat server');
+});
+</script>
+{% endblock %}

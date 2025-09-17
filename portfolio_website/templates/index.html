@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emmanuel Oladipo - Full Stack Developer</title>
+    <meta name="description" content="Professional portfolio of Your Name - Full Stack Developer specializing in modern web technologies">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.replit.com/agent/bootstrap-agent-dark-theme.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#home">Emmanuel Oladipo</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Testimonials</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section d-flex align-items-center min-vh-100">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8" style="position: relative; z-index: 3;">
+                    <h1 class="display-3 fw-bold mb-3 hero-title" style="color: #333;">
+                        Hi, I'm <span style="color: #2563eb;">Emmanuel Oladipo
+                        </span>
+                    </h1>
+                    <h2 class="h3 mb-4" style="color: #666;">Full Stack Developer and Graphic Designer</h2>
+                    <p class="lead mb-4" style="color: #555;">
+                        I create exceptional digital experiences with modern web technologies. 
+                        Passionate about clean code, user experience, and innovative solutions.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#contact" class="btn btn-primary btn-lg">
+                            <i class="fas fa-envelope me-2"></i>Get In Touch
+                        </a>
+                        <a href="{{ url_for('download_resume') }}" class="btn btn-outline-secondary btn-lg">
+                            <i class="fas fa-download me-2"></i>Download Resume
+                        </a>
+                    </div>
+                    <div class="social-links mt-4">
+                        <a href="https://github.com/yourusername" class="social-link me-3" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/yourusername" class="social-link me-3" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/yourusername" class="social-link me-3" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="mailto:your.email@example.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-center">
+                    <div class="hero-image">
+                            <div class="profile-placeholder" id="profilePlaceholder">                        
+                            <img id="profileImage" src="{{ url_for('static', filename='images/use.jpeg') }}" alt="Profile Picture" class="profile-image" style="width: 100%; height: 100%; border-radius: 50%;">  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5" style="background: var(--section-bg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" style="color: #1e40af;">About Me</h2>
+                    <p class="lead" style="color: #666;">Get to know me better</p>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h3 class="h4 fw-bold mb-3">Hello! I'm Emmyfest</h3>
+                    <p class="mb-3">
+                        I'm a passionate Full Stack Developer and Graphic Designer with 3+ years of experience creating 
+                        digital solutions that make a difference. I specialize in modern web technologies 
+                        and love turning complex problems into simple, beautiful designs.
+                    </p>
+                    <p class="mb-3">
+                        My journey in web development started in 2021 and since then, I've worked 
+                        with startups and established companies to deliver high-quality applications 
+                        that users love.
+                    </p>
+                    <p class="mb-4">
+                        When I'm not coding, you can find me exploring new technologies, contributing 
+                        to open source projects, or enjoying a good cup of coffee while reading tech blogs.
+                    </p>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled">
+                                <li><strong>Location:</strong> Oyo State, Ibadan, Nigeria.</li>
+                                <li><strong>Experience:</strong> 3+ Years</li>
+                                <li><strong>Email:</strong> emmyfest643@gmail.com</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6">
+                            <ul class="list-unstyled">
+                                <li><strong>Degree:</strong> BSc. COM Science - Oxford Univeristy Online Studies</li>
+                                <li><strong>Freelance:</strong> Available</li>
+                                <li><strong>Languages:</strong> English, Yoruba.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="tech-stack">
+                        <h4 class="h5 fw-bold mb-3">Tech Stack</h4>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <div class="tech-category">
+                                    <h6 class="fw-bold text-primary">Frontend</h6>
+                                    <div class="tech-items">
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #ff6b6b, #ee5a52);">HTML5</span>
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #4ecdc4, #44a08d);">CSS3</span>
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #f7b733, #fc4a1a);">JavaScript</span>
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #667eea, #764ba2);">React</span>
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #fa709a, #fee140);">Bootstrap</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="tech-category">
+                                    <h6 class="fw-bold text-primary">Backend</h6>
+                                    <div class="tech-items">
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #3776ab, #ffd343);">Python</span>
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #000000, #434343);">Flask</span>
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #092e20, #0c3f2e);">Django</span>
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #009688, #4db6ac);">FastAPI</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="tech-category">
+                                    <h6 class="fw-bold text-primary">Database</h6>
+                                    <div class="tech-items">
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #336791, #4a90e2);">PostgreSQL</span>
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #f29111, #e97e00);">MySQL</span>
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #4faa41, #6cc04a);">MongoDB</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="tech-category">
+                                    <h6 class="fw-bold text-primary">Tools</h6>
+                                    <div class="tech-items">
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #f14e32, #ff6b6b);">Git</span>
+                                        <span class="badge me-1 mb-1" style="background: linear-gradient(135deg, #0db7ed, #2496ed);">Docker</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section 
+    <section id="projects" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" style="color: #059669;">Projects</h2>
+                    <p class="lead" style="color: #666;">Some of my recent work</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <!-- Project 1 
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 project-card">
+                        <div class="project-image">
+                            <div class="placeholder-image d-flex align-items-center justify-content-center">
+                                <i class="fas fa-image fa-3x text-muted"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">E-Commerce Platform</h5>
+                            <p class="card-text">
+                                A full-featured e-commerce platform with user authentication, 
+                                payment processing, and admin dashboard.
+                            </p>
+                            <div class="tech-used mb-3">
+                                <span class="badge bg-primary me-1">HTML5</span>
+                                <span class="badge bg-primary me-1">CSS3</span>
+                                <span class="badge bg-primary me-1">React.js</span>
+                                <span class="badge bg-primary me-1">Python</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/yourusername/project1" class="btn btn-outline-secondary btn-sm me-2" target="_blank">
+                                    <i class="fab fa-github me-1"></i>Code
+                                </a>
+                                <a href="https://project1-demo.com" class="btn btn-primary btn-sm" target="_blank">
+                                    <i class="fas fa-external-link-alt me-1"></i>Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               
+
+                <!-- Project 3 
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 project-card">
+                        <div class="project-image">
+                            <div class="placeholder-image d-flex align-items-center justify-content-center">
+                                <i class="fas fa-image fa-3x text-muted"></i>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Weather Dashboard</h5>
+                            <p class="card-text">
+                                A responsive weather dashboard with location-based forecasts, 
+                                interactive maps, and detailed weather analytics.
+                            </p>
+                            <div class="tech-used mb-3">
+                                <span class="badge bg-primary me-1">JavaScript</span>
+                                <span class="badge bg-primary me-1">Chart.js</span>
+                                <span class="badge bg-primary me-1">API Integration</span>
+                                <span class="badge bg-primary me-1">Bootstrap</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/yourusername/project3" class="btn btn-outline-secondary btn-sm me-2" target="_blank">
+                                    <i class="fab fa-github me-1"></i>Code
+                                </a>
+                                <a href="https://project3-demo.com" class="btn btn-primary btn-sm" target="_blank">
+                                    <i class="fas fa-external-link-alt me-1"></i>Live Demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+-->
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" style="color: #3b82f6;">Skills & Expertise</h2>
+                    <p class="lead" style="color: #666;">Technologies I work with</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="skill-category text-center">
+                        <div class="skill-icon mb-3">
+                            <i class="fas fa-code fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="fw-bold">Frontend Development</h5>
+                        <ul class="list-unstyled">
+                            <li>HTML5 & CSS3</li>
+                            <li>JavaScript (ES6+)</li>
+                            <li>React.js</li>
+                
+                            <li>Bootstrap</li>
+                            <li>Responsive Design</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="skill-category text-center">
+                        <div class="skill-icon mb-3">
+                            <i class="fas fa-server fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="fw-bold">Backend Development</h5>
+                        <ul class="list-unstyled">
+                            <li>Python</li>
+                            <li>Flask & Django</li>
+                            <li>Node.js</li>
+                          
+                            <li>RESTful APIs</li>
+                            <li>Authentication</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="skill-category text-center">
+                        <div class="skill-icon mb-3">
+                            <i class="fas fa-database fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="fw-bold">Database & Tools</h5>
+                        <ul class="list-unstyled">
+                            <li>PostgreSQL</li>
+                            <li>MySQL</li>
+                            <li>MongoDB</li>
+                            
+                            <li>Git & GitHub</li>
+                            <li>Docker</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="skill-category text-center">
+                        <div class="skill-icon mb-3">
+                            <i class="fas fa-cloud fa-3x text-primary"></i>
+                        </div>
+                        <h5 class="fw-bold">DevOps & Cloud</h5>
+                        <ul class="list-unstyled">
+                            <li>AWS</li>
+                            <li>Linux</li>
+                            <li>CI/CD</li>
+                            <li>Deployment</li>
+                            <li>Testing</li>
+                            <li>Performance</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" style="color: #0ea5e9;">Testimonials</h2>
+                    <p class="lead" style="color: #666;">What clients and colleagues say</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="card h-100 testimonial-card">
+                        <div class="card-body text-center">
+                            <div class="testimonial-avatar mb-3">
+                                <i class="fas fa-user-circle fa-4x text-muted"></i>
+                            </div>
+                            <blockquote class="blockquote">
+                                <p class="mb-3">
+                                    "Working with [Your Name] was an excellent experience. They delivered 
+                                    high-quality code on time and exceeded our expectations."
+                                </p>
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <h6 class="fw-bold mb-0">Client Name</h6>
+                                <small class="text-muted">CEO, Company Name</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card h-100 testimonial-card">
+                        <div class="card-body text-center">
+                            <div class="testimonial-avatar mb-3">
+                                <i class="fas fa-user-circle fa-4x text-muted"></i>
+                            </div>
+                            <blockquote class="blockquote">
+                                <p class="mb-3">
+                                    "Outstanding technical skills and great communication. [Your Name] 
+                                    is a reliable developer who always delivers quality work."
+                                </p>
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <h6 class="fw-bold mb-0">Colleague Name</h6>
+                                <small class="text-muted">Senior Developer, Tech Company</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card h-100 testimonial-card">
+                        <div class="card-body text-center">
+                            <div class="testimonial-avatar mb-3">
+                                <i class="fas fa-user-circle fa-4x text-muted"></i>
+                            </div>
+                            <blockquote class="blockquote">
+                                <p class="mb-3">
+                                    "Professional, creative, and detail-oriented. [Your Name] transformed 
+                                    our vision into a beautiful, functional application."
+                                </p>
+                            </blockquote>
+                            <div class="testimonial-author">
+                                <h6 class="fw-bold mb-0">Project Manager</h6>
+                                <small class="text-muted">Product Manager, Startup</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="display-5 fw-bold" style="color: #10b981;">Get In Touch</h2>
+                    <p class="lead" style="color: #666;">Let's discuss your next project</p>
+                </div>
+            </div>
+            
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="row mb-4">
+                        <div class="col-lg-8 mx-auto">
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ 'success' if category == 'success' else 'danger' }} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endwith %}
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="row g-4">
+                        <div class="col-md-4 text-center">
+                            <div class="contact-info">
+                                <div class="contact-icon mb-3">
+                                    <i class="fas fa-envelope fa-2x text-primary"></i>
+                                </div>
+                                <h6 class="fw-bold">Email</h6>
+                                <p class="text-muted">emmyfest643@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="contact-info">
+                                <div class="contact-icon mb-3">
+                                    <i class="fas fa-phone fa-2x text-primary"></i>
+                                </div>
+                                <h6 class="fw-bold">Phone</h6>
+                                <p class="text-muted">+234 810 835 7213</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <div class="contact-info">
+                                <div class="contact-icon mb-3">
+                                    <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
+                                </div>
+                                <h6 class="fw-bold">Location</h6>
+                                <p class="text-muted">Ibadan, Oyo State Nigeria.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form mt-5">
+                        <form method="POST" action="{{ url_for('contact') }}">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" name="email" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="subject" class="form-label">Subject</label>
+                                    <input type="text" class="form-control" id="subject" name="subject" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-paper-plane me-2"></i>Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-body-secondary py-4 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="social-links mb-3">
+                        <a href="https://github.com/yourusername" class="social-link me-3" target="_blank">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/yourusername" class="social-link me-3" target="_blank">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://twitter.com/yourusername" class="social-link me-3" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="mailto:your.email@example.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                    <p class="text-muted mb-0">
+                        &copy; 2025 Emmyfest. All rights reserved.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

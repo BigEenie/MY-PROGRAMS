@@ -1,0 +1,245 @@
+import os
+from flask import render_template, request, redirect, url_for, flash, session, jsonify
+from werkzeug.utils import secure_filename
+from werkzeug.security import check_password_hash, generate_password_hash
+from app import app, db
+from models import Seller, Product, PurchaseRequest, Admin, University, init_database
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+def save_profile_image(file):
+    if file and allowed_file(file.filename):
+        filename = secure_filename(file.filename)
+        import time
+        timestamp = str(int(time.time()))
+        name, ext = os.path.splitext(filename)
+        filename = f"profile_{timestamp}_{name}{ext}"
+        file_path = os.path.join('static/uploads', filename)
+        file.save(file_path)
+        return f"/static/uploads/{filename}"
+    return None
+
+@app.route('/')
+def index():
+    search_query = request.args.get('search', '')
+    category_filter = request.args.get('category', '')
+    university = University.query.first()
+    query = db.session.query(Product).join(Seller).filter(Seller.is_active == True, Product.is_available == True)
+    if search_query:
+        search_term = f"%{search_query}%"
+        query = query.filter(
+            db.or_(
+                Product.name.ilike(search_term),
+                Product.description.ilike(search_term),
+                Product.category.ilike(search_term),
+                Seller.name.ilike(search_term),
+                Seller.department.ilike(search_term)
+            )
+        )
+    if category_filter:
+        query = query.filter(Product.category == category_filter)
+    products = query.all()
+    categories = db.session.query(Product.category).distinct().order_by(Product.category).all()
+    categories = [cat[0] for cat in categories]
+    return render_template('index.html', products=products, categories=categories, search_query=search_query, category_filter=category_filter, university=university)
+
+@app.route('/seller/<int:seller_id>')
+def seller_profile(seller_id):
+    seller = Seller.query.filter_by(id=seller_id, is_active=True).first()
+    is_admin = session.get('admin_logged_in', False)
+    if not seller:
+        flash('Seller not found or inactive.', 'error')
+        return redirect(url_for('index'))
+    products = Product.query.filter_by(seller_id=seller_id, is_available=True).all()
+    university = University.query.first()
+    return render_template('seller_profile.html', seller=seller, is_admin=is_admin, products=products, university=university)
+
+@app.route('/contact_seller/<int:seller_id>')
+def contact_seller(seller_id):
+    seller = Seller.query.filter_by(id=seller_id, is_active=True).first()
+    if not seller:
+        flash('Seller not found or inactive.', 'error')
+        return redirect(url_for('index'))
+    product_id = request.args.get('product_id')
+    product = Product.query.get(product_id) if product_id else None
+    university = University.query.first()   
+    return render_template('contact_seller.html', seller=seller, product=product, university=university)
+
+@app.route('/submit_contact', methods=['POST'])
+def submit_contact():
+    seller_id = request.form.get('seller_id')
+    product_id = request.form.get('product_id') or None
+    buyer_name = request.form.get('buyer_name')
+    buyer_email = request.form.get('buyer_email')
+    buyer_phone = request.form.get('buyer_phone')
+    message = request.form.get('message')
+    if not all([seller_id, buyer_name, buyer_email, message]):
+        flash('Please fill in all required fields.', 'error')
+        return redirect(url_for('contact_seller', seller_id=seller_id))
+    purchase_request = PurchaseRequest(
+        seller_id=int(seller_id),
+        product_id=int(product_id) if product_id else None,
+        buyer_name=buyer_name,
+        buyer_email=buyer_email,
+        buyer_phone=buyer_phone,
+        message=message
+    )
+    db.session.add(purchase_request)
+    db.session.commit()
+    flash('Your purchase inquiry has been sent!', 'success')
+    return redirect(url_for('index'))
+
+@app.route('/admin')
+def admin():
+    if not session.get('admin_logged_in'):
+        return redirect(url_for('admin_login'))
+    sellers = Seller.query.all()
+    products = Product.query.all()
+    purchase_requests = PurchaseRequest.query.order_by(PurchaseRequest.created_at.desc()).limit(10).all()
+    university = University.query.first()
+    return render_template('admin.html', sellers=sellers, products=products, purchase_requests=purchase_requests, university=university)
+
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+        admin = Admin.query.filter_by(username=username).first()
+        if admin and admin.check_password(password):
+            session['admin_logged_in'] = True
+            flash('Admin login successful!', 'success')
+            return redirect(url_for('admin'))
+        else:
+            flash('Invalid admin credentials.', 'error')
+    university = University.query.first()
+    return render_template('admin_login.html', university=university)
+
+@app.route('/admin/logout')
+def admin_logout():
+    session.pop('admin_logged_in', None)
+    flash('Admin logged out successfully.', 'info')
+    return redirect(url_for('index'))
+
+@app.route('/admin/add_seller', methods=['GET', 'POST'])
+def add_seller():
+    if not session.get('admin_logged_in'):
+        return redirect(url_for('admin_login'))
+    if request.method == 'POST':
+        name = request.form.get('name')
+        department = request.form.get('department')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        bio = request.form.get('bio', '')
+        profile_image_url = request.form.get('profile_image_url', '')
+        profile_image_file = request.files.get('profile_image_file')
+        if profile_image_file and profile_image_file.filename:
+            uploaded_image_url = save_profile_image(profile_image_file)
+            profile_image_url = uploaded_image_url or profile_image_url
+        if not all([name, department, email, phone]):
+            flash('Please fill in all required fields.', 'error')
+            return redirect(url_for('add_seller'))
+        existing_seller = Seller.query.filter_by(email=email).first()
+        if existing_seller:
+            flash('A seller with this email already exists.', 'error')
+            return redirect(url_for('add_seller'))
+        seller = Seller(
+            name=name,
+            department=department,
+            email=email,
+            phone=phone,
+            bio=bio,
+            profile_image_url=profile_image_url
+        )
+        db.session.add(seller)
+        db.session.commit()
+        flash(f'Seller "{name}" added successfully!', 'success')
+        return redirect(url_for('admin'))
+    university = University.query.first()
+    return render_template('add_seller.html', university=university)
+
+@app.route('/admin/toggle_seller_status/<int:seller_id>')
+def toggle_seller_status(seller_id):
+    if not session.get('admin_logged_in'):
+        return redirect(url_for('admin_login'))
+    seller = Seller.query.get_or_404(seller_id)
+    seller.is_active = not seller.is_active
+    db.session.commit()
+    status = "activated" if seller.is_active else "deactivated"
+    flash(f'Seller {seller.name} has been {status}.', 'success')
+    return redirect(url_for('admin'))
+
+@app.route('/admin/seller/<int:seller_id>/add_product', methods=['GET', 'POST'])
+def admin_create_product(seller_id):
+    if not session.get('admin_logged_in'):
+        flash("Unauthorized access. Admins only.", "danger")
+        return redirect(url_for('admin_login'))
+    seller = Seller.query.filter_by(id=seller_id, is_active=True).first()
+    if not seller:
+        flash('Seller not found or inactive.', 'error')
+        return redirect(url_for('index'))
+    if request.method == 'POST':
+        name = request.form.get('name')
+        description = request.form.get('description')
+        price = request.form.get('price')
+        category = request.form.get('category')
+        condition = request.form.get('condition', 'Good')
+        image_url = request.form.get('image_url', '')
+        if not all([name, description, price, category]):
+            flash('Please fill in all required fields.', 'error')
+            return redirect(url_for('admin_create_product', seller_id=seller_id))
+        try:
+            price = float(price)
+        except ValueError:
+            flash('Please enter a valid price.', 'error')
+            return redirect(url_for('admin_create_product', seller_id=seller_id))
+        product = Product(
+            seller_id=seller_id,
+            name=name,
+            description=description,
+            price=price,
+            category=category,
+            condition=condition,
+            image_url=image_url
+        )
+        db.session.add(product)
+        db.session.commit()
+        flash(f'Product "{name}" added successfully!', 'success')
+        return redirect(url_for('seller_profile', seller_id=seller_id))
+    university = University.query.first()
+    return render_template('admin_create_product.html', seller=seller, university=university)
+
+@app.route('/admin/university_settings', methods=['GET', 'POST'])
+def university_settings():
+    if not session.get('admin_logged_in'):
+        return redirect(url_for('admin_login'))
+    university = University.query.first()
+    if not university:
+        university = University(name='University Marketplace')
+        db.session.add(university)
+        db.session.commit()
+    if request.method == 'POST':
+        university.name = request.form.get('name', university.name)
+        university.logo_url = request.form.get('logo_url', university.logo_url)
+        university.primary_color = request.form.get('primary_color', university.primary_color)
+        university.secondary_color = request.form.get('secondary_color', university.secondary_color)
+        university.accent_color = request.form.get('accent_color', university.accent_color)
+        db.session.commit()
+        flash('University settings updated successfully!', 'success')
+        return redirect(url_for('admin'))
+    return render_template('university_settings.html', university=university)
+
+@app.template_filter('currency')
+def currency_filter(value):
+    return f"\u20a6{value:,.2f}"
+
+@app.context_processor
+def inject_globals():
+    university = University.query.first()
+    return {
+        'admin_logged_in': session.get('admin_logged_in', False),
+        'university': university
+    }

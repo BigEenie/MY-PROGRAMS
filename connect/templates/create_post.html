@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{% block title %}Create Post - University of Ibadan Social Platform{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-ui-blue text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-plus me-2"></i>Create New Post
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data" id="createPostForm">
+                        <!-- Post Content -->
+                        <div class="mb-4">
+                            <label for="content" class="form-label">What's on your mind?</label>
+                            <textarea class="form-control" id="content" name="content" rows="6" 
+                                      placeholder="Share your thoughts with the UI community..." 
+                                      maxlength="1000" required></textarea>
+                            <div class="form-text">
+                                <span id="charCount">0</span>/1000 characters
+                            </div>
+                        </div>
+                        
+                        <!-- Post Image -->
+                        <div class="mb-4">
+                            <label for="post_image" class="form-label">Add Image (Optional)</label>
+                            <input type="file" class="form-control" id="post_image" name="post_image" 
+                                   accept="image/*">
+                            <div class="form-text">Upload JPG, PNG, or GIF (max 16MB)</div>
+                            
+                            <!-- Image Preview -->
+                            <div id="imagePreview" class="mt-3" style="display: none;">
+                                <img id="previewImg" src="#" alt="Image preview" class="img-fluid rounded" 
+                                     style="max-height: 300px;">
+                                <button type="button" class="btn btn-sm btn-outline-danger mt-2" 
+                                        id="removeImage">
+                                    <i class="fas fa-times me-1"></i>Remove Image
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Post Visibility -->
+                        <div class="mb-4">
+                            <label class="form-label">Who can see this post?</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="visibility" 
+                                       id="public" value="public" checked>
+                                <label class="form-check-label" for="public">
+                                    <i class="fas fa-globe me-1"></i>
+                                    <strong>Public</strong> - All UI community members can see this post
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="visibility" 
+                                       id="department" value="department">
+                                <label class="form-check-label" for="department">
+                                    <i class="fas fa-building me-1"></i>
+                                    <strong>Department Only</strong> - Only members of your department can see this post
+                                </label>
+                            </div>
+                        </div>
+                        
+                        <!-- Post Actions -->
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('feed') }}" class="btn btn-secondary">
+                                <i class="fas fa-times me-1"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-ui-blue" id="submitBtn">
+                                <i class="fas fa-paper-plane me-1"></i>Share Post
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Post Tips -->
+            <div class="card shadow-sm mt-4">
+                <div class="card-header bg-light">
+                    <h6 class="mb-0">
+                        <i class="fas fa-lightbulb me-2"></i>Posting Tips
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <ul class="mb-0">
+                        <li>Keep your posts respectful and relevant to the academic community</li>
+                        <li>Use department-only visibility for department-specific discussions</li>
+                        <li>Add images to make your posts more engaging</li>
+                        <li>Engage with other posts through likes and comments</li>
+                        <li>Share academic resources, achievements, and positive experiences</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const contentTextarea = document.getElementById('content');
+    const charCount = document.getElementById('charCount');
+    const imageInput = document.getElementById('post_image');
+    const imagePreview = document.getElementById('imagePreview');
+    const previewImg = document.getElementById('previewImg');
+    const removeImageBtn = document.getElementById('removeImage');
+    const submitBtn = document.getElementById('submitBtn');
+    const form = document.getElementById('createPostForm');
+    
+    // Character counter
+    function updateCharCount() {
+        const count = contentTextarea.value.length;
+        charCount.textContent = count;
+        
+        if (count > 900) {
+            charCount.parentElement.className = 'form-text text-warning';
+        } else if (count >= 1000) {
+            charCount.parentElement.className = 'form-text text-danger';
+        } else {
+            charCount.parentElement.className = 'form-text';
+        }
+        
+        // Disable submit if over limit
+        submitBtn.disabled = count > 1000;
+    }
+    
+    contentTextarea.addEventListener('input', updateCharCount);
+    updateCharCount(); // Initial count
+    
+    // Image preview
+    imageInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImg.src = e.target.result;
+                imagePreview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+    
+    // Remove image
+    removeImageBtn.addEventListener('click', function() {
+        imageInput.value = '';
+        imagePreview.style.display = 'none';
+        previewImg.src = '#';
+    });
+    
+    // Form submission with loading state
+    form.addEventListener('submit', function(e) {
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Posting...';
+        submitBtn.disabled = true;
+    });
+    
+    // Auto-resize textarea
+    contentTextarea.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+});
+</script>
+{% endblock %}

@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Profile - University of Ibadan Social Platform{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-ui-blue text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-edit me-2"></i>Edit Profile
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="row">
+                            <!-- Profile Photo Section -->
+                            <div class="col-md-4 text-center mb-4">
+                                <div class="profile-photo-section">
+                                    <div class="current-photo mb-3">
+                                        {% if user.profile_photo %}
+                                            <img src="{{ url_for('uploaded_file', filename=user.profile_photo) }}" 
+                                                 alt="{{ user.full_name }}" class="profile-photo-edit">
+                                        {% else %}
+                                            <div class="profile-photo-placeholder-edit">
+                                                <i class="fas fa-user fa-4x"></i>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="profile_photo" class="form-label">Profile Photo</label>
+                                        <input type="file" class="form-control" id="profile_photo" name="profile_photo" 
+                                               accept="image/*">
+                                        <div class="form-text">Upload JPG, PNG, or GIF (max 16MB)</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Profile Information -->
+                            <div class="col-md-8">
+                                <div class="mb-3">
+                                    <label for="full_name" class="form-label">Full Name *</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                        <input type="text" class="form-control" id="full_name" name="full_name" 
+                                               value="{{ user.full_name }}" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Username</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-at"></i>
+                                        </span>
+                                        <input type="text" class="form-control" id="username" 
+                                               value="{{ user.username }}" readonly disabled>
+                                    </div>
+                                    <div class="form-text">Username cannot be changed</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+                                        <input type="email" class="form-control" id="email" 
+                                               value="{{ user.email }}" readonly disabled>
+                                    </div>
+                                    <div class="form-text">Email cannot be changed</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="role" class="form-label">Role</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-user-tag"></i>
+                                        </span>
+                                        <input type="text" class="form-control" id="role" 
+                                               value="{{ user.role.title() }}" readonly disabled>
+                                    </div>
+                                    <div class="form-text">Role cannot be changed</div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="department" class="form-label">Department</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-building"></i>
+                                        </span>
+                                        <select class="form-select" id="department" name="department">
+                                            <option value="">Select Department</option>
+                                            {% for dept in departments %}
+                                                <option value="{{ dept }}" 
+                                                        {% if user.department == dept %}selected{% endif %}>
+                                                    {{ dept }}
+                                                </option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="bio" class="form-label">Bio</label>
+                            <textarea class="form-control" id="bio" name="bio" rows="4" 
+                                      placeholder="Tell us about yourself..." maxlength="500">{{ user.bio }}</textarea>
+                            <div class="form-text">Maximum 500 characters</div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('profile', username=user.username) }}" 
+                               class="btn btn-secondary">
+                                <i class="fas fa-times me-1"></i>Cancel
+                            </a>
+                            <button type="submit" class="btn btn-ui-blue">
+                                <i class="fas fa-save me-1"></i>Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Preview profile photo before upload
+document.getElementById('profile_photo').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const currentPhoto = document.querySelector('.profile-photo-edit, .profile-photo-placeholder-edit');
+            if (currentPhoto.tagName === 'IMG') {
+                currentPhoto.src = e.target.result;
+            } else {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+                img.className = 'profile-photo-edit';
+                img.alt = 'Profile preview';
+                currentPhoto.parentNode.replaceChild(img, currentPhoto);
+            }
+        };
+        reader.readAsDataURL(file);
+    }
+});
+
+// Character counter for bio
+const bioTextarea = document.getElementById('bio');
+const maxLength = 500;
+
+function updateCharCount() {
+    const remaining = maxLength - bioTextarea.value.length;
+    const formText = bioTextarea.nextElementSibling;
+    formText.textContent = `${remaining} characters remaining`;
+    
+    if (remaining < 50) {
+        formText.className = 'form-text text-warning';
+    } else if (remaining < 0) {
+        formText.className = 'form-text text-danger';
+    } else {
+        formText.className = 'form-text';
+    }
+}
+
+bioTextarea.addEventListener('input', updateCharCount);
+updateCharCount(); // Initial count
+</script>
+{% endblock %}

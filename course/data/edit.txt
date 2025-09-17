@@ -1,0 +1,43 @@
+first edit json/law
+
+ {
+          "id": "animal-science",
+          "name": "Animal Science",
+          "description": "Animal Production and Management",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+
+        
+        {
+          "id": "agricultural-economics",
+          "name": "Agricultural Economics",
+          "description": "Agricultural Economics and Farm Management",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "agronomy",
+          "name": "Agronomy",
+          "description": "Crop Science and Production",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+
+
+
+
+
+        

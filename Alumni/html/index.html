@@ -1,0 +1,288 @@
+<!--{% extends "base.html" %}
+
+{% block title %}Alumni Directory{% endblock %}
+
+{% block content %}
+<div class="container my-4">-->
+    <!-- Header Section -->
+     <!DOCTYPE html>
+     <html lang="en">
+     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+     </head>
+     <body>
+        
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="display-6 fw-bold mb-2">Alumni Directory</h1>
+            <p class="lead text-muted">Connect with our distinguished alumni community</p>
+        </div>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="GET" action="{{ url_for('index') }}" id="filterForm">
+                        <div class="row g-3">
+                            <!-- Search Input -->
+                            <div class="col-md-4">
+                                <label for="search" class="form-label">Search Alumni</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">
+                                        <i data-feather="search"></i>
+                                    </span>
+                                    <input type="text" 
+                                           class="form-control" 
+                                           id="search" 
+                                           name="search" 
+                                           placeholder="Name, company, position..."
+                                           value="{{ current_filters.search }}">
+                                </div>
+                            </div>
+                            
+                            <!-- Graduation Year Filter -->
+                            <div class="col-md-2">
+                                <label for="graduation_year" class="form-label">Graduation Year</label>
+                                <select class="form-select" id="graduation_year" name="graduation_year">
+                                    <option value="">All Years</option>
+                                   <!-- {% for year in graduation_years %}-->
+                                        <option value="{{ year }}" {% if current_filters.graduation_year == year|string %}selected{% endif %}>
+                                            {{ year }}
+                                        </option>
+                                    <!--{% endfor %}-->
+                                </select>
+                            </div>
+                            
+                            <!-- Field of Study Filter -->
+                            <div class="col-md-3">
+                                <label for="field_of_study" class="form-label">Field of Study</label>
+                                <select class="form-select" id="field_of_study" name="field_of_study">
+                                    <option value="">All Fields</option>
+                                    {% for field in fields_of_study %}
+                                        <option value="{{ field }}" {% if current_filters.field_of_study == field %}selected{% endif %}>
+                                            {{ field }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <!-- Location Filter -->
+                            <div class="col-md-2">
+                                <label for="location" class="form-label">Location</label>
+                                <select class="form-select" id="location" name="location">
+                                    <option value="">All Locations</option>
+                                    {% for loc in locations %}
+                                        <option value="{{ loc }}" {% if current_filters.location == loc %}selected{% endif %}>
+                                            {{ loc }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            
+                            <!-- Filter Button -->
+                            <div class="col-md-1 d-flex align-items-end">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i data-feather="filter"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Clear Filters -->
+                        {% if current_filters.search or current_filters.graduation_year or current_filters.field_of_study or current_filters.location %}
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                    <a href="{{ url_for('index') }}" class="btn btn-outline-secondary btn-sm">
+                                        <i data-feather="x" class="me-1"></i>
+                                        Clear Filters
+                                    </a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Count -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <p class="text-muted">
+                Showing {{ alumni_pagination.items|length }} of {{ alumni_pagination.total }} alumni
+                {% if alumni_pagination.pages > 1 %}
+                    (Page {{ alumni_pagination.page }} of {{ alumni_pagination.pages }})
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <!-- Alumni Grid -->
+    {% if alumni_pagination.items %}
+        <div class="row g-4 mb-4">
+            {% for alumni in alumni_pagination.items %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card h-100 alumni-card">
+                        <div class="card-body">
+                            <!-- Profile Header -->
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="profile-avatar me-3">
+                                    {{ alumni.initials }}
+                                </div>
+                                <div>
+                                    <h5 class="card-title mb-1">{{ alumni.full_name }}</h5>
+                                    <p class="text-muted small mb-0">Class of {{ alumni.graduation_year }}</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Academic Info -->
+                            <div class="mb-3">
+                                <p class="card-text small">
+                                    <strong>{{ alumni.degree }}</strong><br>
+                                    <span class="text-muted">{{ alumni.field_of_study }}</span>
+                                </p>
+                            </div>
+                            
+                            <!-- Current Position -->
+                            {% if alumni.current_position or alumni.current_company %}
+                                <div class="mb-3">
+                                    <p class="card-text small">
+                                        {% if alumni.current_position %}
+                                            <i data-feather="briefcase" class="me-1"></i>
+                                            <strong>{{ alumni.current_position }}</strong>
+                                        {% endif %}
+                                        {% if alumni.current_company %}
+                                            <br><span class="text-muted">{{ alumni.current_company }}</span>
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            {% endif %}
+                            
+                            <!-- Location -->
+                            {% if alumni.current_location %}
+                                <div class="mb-3">
+                                    <p class="card-text small">
+                                        <i data-feather="map-pin" class="me-1"></i>
+                                        {{ alumni.current_location }}
+                                    </p>
+                                </div>
+                            {% endif %}
+                            
+                            <!-- Bio Preview -->
+                            {% if alumni.bio %}
+                                <div class="mb-3">
+                                    <p class="card-text small text-muted">
+                                        {{ alumni.bio[:100] }}{% if alumni.bio|length > 100 %}...{% endif %}
+                                    </p>
+                                </div>
+                            {% endif %}
+                        </div>
+                        
+                        <!-- Card Footer -->
+                        <div class="card-footer bg-transparent">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{{ url_for('profile', alumni_id=alumni.id) }}" class="btn btn-sm btn-outline-primary">
+                                    View Profile
+                                </a>
+                                <div>
+                                    {% if alumni.linkedin_url %}
+                                        <a href="{{ alumni.linkedin_url }}" target="_blank" class="btn btn-sm btn-outline-secondary me-1" title="LinkedIn">
+                                            <i data-feather="linkedin"></i>
+                                        </a>
+                                    {% endif %}
+                                    {% if alumni.website_url %}
+                                        <a href="{{ alumni.website_url }}" target="_blank" class="btn btn-sm btn-outline-secondary" title="Website">
+                                            <i data-feather="globe"></i>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Pagination -->
+        {% if alumni_pagination.pages > 1 %}
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="Alumni pagination">
+                        <ul class="pagination justify-content-center">
+                            {% if alumni_pagination.has_prev %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ url_for('index', page=alumni_pagination.prev_num, **current_filters) }}">Previous</a>
+                                </li>
+                            {% endif %}
+                            
+                            {% for page_num in alumni_pagination.iter_pages() %}
+                                {% if page_num %}
+                                    {% if page_num != alumni_pagination.page %}
+                                        <li class="page-item">
+                                            <a class="page-link" href="{{ url_for('index', page=page_num, **current_filters) }}">{{ page_num }}</a>
+                                        </li>
+                                    {% else %}
+                                        <li class="page-item active">
+                                            <span class="page-link">{{ page_num }}</span>
+                                        </li>
+                                    {% endif %}
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <span class="page-link">...</span>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            
+                            {% if alumni_pagination.has_next %}
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ url_for('index', page=alumni_pagination.next_num, **current_filters) }}">Next</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        {% endif %}
+    {% else %}
+        <!-- Empty State -->
+        <div class="row">
+            <div class="col-12">
+                <div class="text-center py-5">
+                    <i data-feather="users" style="width: 48px; height: 48px;" class="text-muted mb-3"></i>
+                    <h4>No Alumni Found</h4>
+                    <p class="text-muted">
+                        {% if current_filters.search or current_filters.graduation_year or current_filters.field_of_study or current_filters.location %}
+                            Try adjusting your search criteria or <a href="{{ url_for('index') }}">clear all filters</a>.
+                        {% else %}
+                            No alumni profiles have been added yet. <a href="{{ url_for('add_alumni') }}">Add the first profile</a>.
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Auto-submit form on filter change
+    document.addEventListener('DOMContentLoaded', function() {
+        const filterSelects = document.querySelectorAll('#graduation_year, #field_of_study, #location');
+        filterSelects.forEach(select => {
+            select.addEventListener('change', function() {
+                document.getElementById('filterForm').submit();
+            });
+        });
+        
+        // Initialize feather icons after dynamic content
+        feather.replace();
+    });
+</script>
+{% endblock %}
+
+     </body>
+     </html>

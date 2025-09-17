@@ -1,0 +1,301 @@
+{% extends "base.html" %}
+
+{% block title %}Home - {{ university.name if university else 'University Marketplace' }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section text-white">
+    <div class="container">
+        <div class="row align-items-center min-vh-70">
+            <div class="col-lg-6 hero-content">
+                <h1 class="hero-title">{{ university.name if university else 'University Marketplace' }}</h1>
+                <p class="hero-subtitle">Discover amazing products from fellow students and local marketers. Safe, convenient, and cash-on-delivery transactions in Naira!</p>
+                <div class="hero-badges">
+                    <span class="hero-badge">
+                        <i class="fas fa-money-bill-wave me-2"></i>Cash on Delivery
+                    </span>
+                    <span class="hero-badge">
+                        <i class="fas fa-shield-alt me-2"></i>Safe Transactions
+                    </span>
+                    <span class="hero-badge">
+                        <i class="fas fa-users me-2"></i>Student Network
+                    </span>
+                    <span class="hero-badge">
+                        <i class="fas fa-naira-sign me-2"></i>Naira Payments
+                    </span>
+                </div>
+                <div class="d-flex gap-3 mt-4">
+                    <a href="#products" class="btn btn-light btn-lg px-4">
+                        <i class="fas fa-shopping-bag me-2"></i>Browse Products
+                    </a>
+                    {% if admin_logged_in %}
+                    <a href="{{ url_for('admin') }}" class="btn btn-outline-light btn-lg px-4">
+                        <i class="fas fa-cog me-2"></i>Admin Panel
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="text-center">
+                    <div class="hero-graphic">
+                        <i class="fas fa-store-alt" style="font-size: 8rem; color: rgba(255,255,255,0.3);"></i>
+                        <div class="floating-icons">
+                            <i class="fas fa-laptop" style="position: absolute; top: 20%; left: 10%; font-size: 2rem; color: rgba(255,255,255,0.4); animation: float 3s ease-in-out infinite;"></i>
+                            <i class="fas fa-book" style="position: absolute; top: 40%; right: 20%; font-size: 1.5rem; color: rgba(255,255,255,0.4); animation: float 4s ease-in-out infinite reverse;"></i>
+                            <i class="fas fa-calculator" style="position: absolute; bottom: 30%; left: 20%; font-size: 1.8rem; color: rgba(255,255,255,0.4); animation: float 3.5s ease-in-out infinite;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Search and Filter Section -->
+<section class="py-5" style="background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(10px);">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <form method="GET" class="card border-0 shadow-lg p-4">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-5">
+                            <label class="form-label fw-semibold text-primary">
+                                <i class="fas fa-search me-2"></i>Search Products
+                            </label>
+                            <input type="text" class="form-control form-control-lg" name="search" 
+                                   placeholder="Search products, sellers, or departments..." 
+                                   value="{{ search_query }}">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label fw-semibold text-primary">
+                                <i class="fas fa-tags me-2"></i>Category
+                            </label>
+                            <select class="form-select form-select-lg" name="category">
+                                <option value="">All Categories</option>
+                                {% for category in categories %}
+                                    <option value="{{ category }}" {% if category == category_filter %}selected{% endif %}>
+                                        {{ category }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-filter me-2"></i>Filter Results
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Section -->
+<section class="py-5" id="products">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2 class="display-5 fw-bold mb-3">
+                    <span class="text-gradient">Available Products</span>
+                </h2>
+                <p class="lead text-muted">
+                    {% if search_query or category_filter %}
+                        Showing {{ products|length }} results
+                        {% if search_query %}for "<strong>{{ search_query }}</strong>"{% endif %}
+                        {% if category_filter %}in <strong>{{ category_filter }}</strong>{% endif %}
+                    {% else %}
+                        Browse products from verified sellers
+                    {% endif %}
+                </p>
+            </div>
+        </div>
+
+        {% if products %}
+            <div class="row g-4">
+                {% for product in products %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card product-card h-100">
+                            <div class="product-image-container">
+                                <img src="{{ product.image_url or ('https://via.placeholder.com/300x200/6c757d/ffffff?text=' + product.name.replace(' ', '+')) }}" 
+                                     class="product-image" alt="{{ product.name }}">
+                                <div class="product-badge">
+                                    <span class="category-badge">{{ product.category }}</span>
+                                </div>
+                            </div>
+                            
+                            <div class="card-body d-flex flex-column position-relative">
+                                <h5 class="card-title fw-bold mb-2">{{ product.name }}</h5>
+                                <p class="card-text text-muted flex-grow-1 mb-3">
+                                    {{ product.description[:120] }}{% if product.description|length > 120 %}...{% endif %}
+                                </p>
+                                
+                                <div class="product-details mb-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="price-tag">{{ product.price|currency }}</span>
+                                        <span class="condition-badge">{{ product.condition }}</span>
+                                    </div>
+                                </div>
+
+                                <!-- Seller Info -->
+                                <div class="seller-info glass-effect p-3 rounded mb-3">
+                                    <div class="d-flex align-items-center">
+                                        <img src="{{ product.seller.profile_image_url or ('https://via.placeholder.com/40x40/007bff/ffffff?text=' + product.seller.name[0].upper()) }}" 
+                                             class="rounded-circle me-3" 
+                                             width="40" height="40" alt="{{ product.seller.name }}">
+                                        <div class="flex-grow-1">
+                                            <h6 class="mb-0 fw-semibold">{{ product.seller.name }}</h6>
+                                            <small class="text-muted">
+                                                <i class="fas fa-graduation-cap me-1"></i>{{ product.seller.department }}
+                                            </small>
+                                        </div>
+                                        {% if product.seller.rating > 0 %}
+                                        <div class="text-warning">
+                                            {% for i in range(5) %}
+                                                {% if i < product.seller.rating %}
+                                                    <i class="fas fa-star"></i>
+                                                {% else %}
+                                                    <i class="far fa-star"></i>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2">
+                                    <a href="{{ url_for('contact_seller', seller_id=product.seller.id, product_id=product.id) }}" 
+                                       class="btn btn-primary">
+                                        <i class="fas fa-shopping-cart me-2"></i>Purchase (Cash on Delivery)
+                                    </a>
+                                    <a href="{{ url_for('seller_profile', seller_id=product.seller.id) }}" 
+                                       class="btn btn-outline-primary btn-sm">
+                                        <i class="fas fa-user me-2"></i>View Seller Profile
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-5">
+                <div class="mb-4">
+                    <i class="fas fa-search" style="font-size: 5rem; color: var(--primary-color); opacity: 0.3;"></i>
+                </div>
+                <h3 class="text-muted mb-3">No products found</h3>
+                <p class="text-muted mb-4">
+                    {% if search_query or category_filter %}
+                        Try adjusting your search criteria or browse all products.
+                    {% else %}
+                        No products are currently available. Check back later!
+                    {% endif %}
+                </p>
+                {% if search_query or category_filter %}
+                    <a href="{{ url_for('index') }}" class="btn btn-primary btn-lg">
+                        <i class="fas fa-refresh me-2"></i>Clear Filters
+                    </a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-5" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(240, 147, 251, 0.1) 100%);">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-12">
+                <h2 class="display-6 fw-bold mb-3">
+                    <span class="text-gradient">Why Choose Our Marketplace?</span>
+                </h2>
+                <p class="lead text-muted">Safe, convenient, and student-friendly commerce</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card border-0 h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="feature-icon mx-auto mb-4" style="width: 80px; height: 80px; background: var(--gradient-success); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-naira-sign text-white" style="font-size: 2rem;"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Cash on Delivery</h4>
+                        <p class="text-muted">Pay in Naira only when you receive your product. Safe and secure transactions with no upfront payment required.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card border-0 h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="feature-icon mx-auto mb-4" style="width: 80px; height: 80px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-user-graduate text-white" style="font-size: 2rem;"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Verified Students</h4>
+                        <p class="text-muted">All sellers are verified students and local marketers from your university community. Trust and safety guaranteed.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6">
+                <div class="card feature-card border-0 h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="feature-icon mx-auto mb-4" style="width: 80px; height: 80px; background: var(--gradient-warning); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-shipping-fast text-white" style="font-size: 2rem;"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Campus Delivery</h4>
+                        <p class="text-muted">Fast and convenient delivery within campus and surrounding areas. Meet on campus for safe exchanges.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mx-auto">
+                <div class="card feature-card border-0 h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="feature-icon mx-auto mb-4" style="width: 80px; height: 80px; background: var(--gradient-secondary); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-shield-alt text-white" style="font-size: 2rem;"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Secure Platform</h4>
+                        <p class="text-muted">Safe and reliable platform with verified sellers, secure communication, and trusted transaction processes.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mx-auto">
+                <div class="card feature-card border-0 h-100 text-center">
+                    <div class="card-body p-4">
+                        <div class="feature-icon mx-auto mb-4" style="width: 80px; height: 80px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-comments text-white" style="font-size: 2rem;"></i>
+                        </div>
+                        <h4 class="fw-bold mb-3">Easy Communication</h4>
+                        <p class="text-muted">Direct communication with sellers through our platform. Arrange meetings and discuss product details easily.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CSS for animations -->
+<style>
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+.floating-icons {
+    position: relative;
+}
+
+.text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hover-opacity-100:hover {
+    opacity: 1 !important;
+}
+
+.min-vh-70 {
+    min-height: 70vh;
+}
+</style>
+{% endblock %}

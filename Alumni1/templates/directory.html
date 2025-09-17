@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Alumni Directory</h2>
+<ul>
+    {% for username, info in users.items() %}
+        <li>{{ info.name }} ({{ info.course }} {{ info.year }}) - <a href="{{ url_for('message_user', recipient=username) }}">Message</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

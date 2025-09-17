@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}{{ alumni.full_name }} - Alumni Directory{% endblock %}
+
+{% block content %}
+<div class="container my-4">
+    <!-- Back Button -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                <i data-feather="arrow-left" class="me-1"></i>
+                Back to Directory
+            </a>
+        </div>
+    </div>
+
+    <!-- Profile Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3 text-center mb-4 mb-md-0">
+                            <!-- Profile Avatar -->
+                            <div class="profile-avatar-large mx-auto mb-3">
+                                {{ alumni.initials }}
+                            </div>
+                            
+                            <!-- Social Links -->
+                            <div class="d-flex justify-content-center gap-2">
+                                {% if alumni.linkedin_url %}
+                                    <a href="{{ alumni.linkedin_url }}" target="_blank" class="btn btn-outline-primary btn-sm">
+                                        <i data-feather="linkedin" class="me-1"></i>
+                                        LinkedIn
+                                    </a>
+                                {% endif %}
+                                {% if alumni.website_url %}
+                                    <a href="{{ alumni.website_url }}" target="_blank" class="btn btn-outline-secondary btn-sm">
+                                        <i data-feather="globe" class="me-1"></i>
+                                        Website
+                                    </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-9">
+                            <!-- Name and Basic Info -->
+                            <h1 class="display-6 fw-bold mb-2">{{ alumni.full_name }}</h1>
+                            <p class="lead text-muted mb-3">Class of {{ alumni.graduation_year }}</p>
+                            
+                            <!-- Current Position -->
+                            {% if alumni.current_position or alumni.current_company %}
+                                <div class="mb-3">
+                                    <h5 class="fw-semibold">
+                                        <i data-feather="briefcase" class="me-2"></i>
+                                        Current Position
+                                    </h5>
+                                    {% if alumni.current_position %}
+                                        <p class="mb-1"><strong>{{ alumni.current_position }}</strong></p>
+                                    {% endif %}
+                                    {% if alumni.current_company %}
+                                        <p class="text-muted mb-0">{{ alumni.current_company }}</p>
+                                    {% endif %}
+                                    {% if alumni.industry %}
+                                        <p class="text-muted small mb-0">{{ alumni.industry }}</p>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                            
+                            <!-- Location -->
+                            {% if alumni.current_location %}
+                                <div class="mb-3">
+                                    <h6 class="fw-semibold">
+                                        <i data-feather="map-pin" class="me-2"></i>
+                                        Location
+                                    </h6>
+                                    <p class="mb-0">{{ alumni.current_location }}</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Details -->
+    <div class="row">
+        <!-- Academic Information -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i data-feather="graduation-cap" class="me-2"></i>
+                        Academic Background
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <strong>Degree:</strong><br>
+                        {{ alumni.degree }}
+                    </div>
+                    <div class="mb-3">
+                        <strong>Field of Study:</strong><br>
+                        {{ alumni.field_of_study }}
+                    </div>
+                    <div class="mb-0">
+                        <strong>Graduation Year:</strong><br>
+                        {{ alumni.graduation_year }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="col-lg-6 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i data-feather="mail" class="me-2"></i>
+                        Contact Information
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <strong>Email:</strong><br>
+                        <a href="mailto:{{ alumni.email }}" class="text-decoration-none">{{ alumni.email }}</a>
+                    </div>
+                    {% if alumni.phone %}
+                        <div class="mb-0">
+                            <strong>Phone:</strong><br>
+                            <a href="tel:{{ alumni.phone }}" class="text-decoration-none">{{ alumni.phone }}</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Biography -->
+    {% if alumni.bio %}
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title mb-0">
+                            <i data-feather="user" class="me-2"></i>
+                            Biography
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ alumni.bio }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+    <!-- Career Highlights (Placeholder for future enhancement) -->
+    <div class="row">
+        <div class="col-12 mb-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i data-feather="trending-up" class="me-2"></i>
+                        Professional Journey
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h6 class="fw-semibold mb-1">
+                                    {{ alumni.current_position or 'Current Position' }}
+                                </h6>
+                                <p class="text-muted mb-1">{{ alumni.current_company or 'Current Company' }}</p>
+                                <small class="text-muted">Present</small>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h6 class="fw-semibold mb-1">Graduated</h6>
+                                <p class="text-muted mb-1">{{ alumni.degree }}</p>
+                                <small class="text-muted">{{ alumni.graduation_year }}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Actions -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Connect with {{ alumni.first_name }}</h5>
+                    <p class="card-text text-muted">Reach out to expand your professional network</p>
+                    <div class="d-flex justify-content-center gap-2 flex-wrap">
+                        <a href="mailto:{{ alumni.email }}" class="btn btn-primary">
+                            <i data-feather="mail" class="me-1"></i>
+                            Send Email
+                        </a>
+                        {% if alumni.linkedin_url %}
+                            <a href="{{ alumni.linkedin_url }}" target="_blank" class="btn btn-outline-primary">
+                                <i data-feather="linkedin" class="me-1"></i>
+                                LinkedIn
+                            </a>
+                        {% endif %}
+                        {% if alumni.website_url %}
+                            <a href="{{ alumni.website_url }}" target="_blank" class="btn btn-outline-secondary">
+                                <i data-feather="globe" class="me-1"></i>
+                                Website
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize feather icons
+        feather.replace();
+    });
+</script>
+{% endblock %}

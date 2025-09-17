@@ -1,0 +1,1224 @@
+{
+  "faculties": [
+    {
+      "id": "arts",
+      "name": "Faculty of Arts",
+      "description": "Humanities, Languages, and Cultural Studies",
+      "icon": "fas fa-palette",
+      "departments": [
+        {
+          "id": "arabic-islamic-studies",
+          "name": "Arabic & Islamic Studies",
+          "description": "Arabic Language and Islamic Studies",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "classics",
+          "name": "Classics",
+          "description": "Classical Studies and Ancient Languages",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "communication-language-arts",
+          "name": "Communication & Language Arts",
+          "description": "Mass Communication and Media Studies",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "english",
+          "name": "English",
+          "description": "English Language and Literature",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "european-studies",
+          "name": "European Studies",
+          "description": "European Languages and Cultures",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "history",
+          "name": "History",
+          "description": "Historical Studies and Research",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "https://drive.google.com/drive/folders/1-C1I1Am8ZZykl1Fv0SYPs0MCNqaI68O-"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "https://drive.google.com/drive/folders/1-C1I1Am8ZZykl1Fv0SYPs0MCNqaI68O-"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "https://drive.google.com/drive/folders/1-C1I1Am8ZZykl1Fv0SYPs0MCNqaI68O-"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "https://drive.google.com/drive/folders/1-C1I1Am8ZZykl1Fv0SYPs0MCNqaI68O-"}
+          ]
+        },
+        {
+          "id": "linguistics-african-languages",
+          "name": "Linguistics & African Languages",
+          "description": "Linguistics and African Language Studies",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "philosophy",
+          "name": "Philosophy",
+          "description": "Philosophy and Logic Studies",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "religious-studies",
+          "name": "Religious Studies",
+          "description": "Comparative Religion and Theology",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "theatre-arts",
+          "name": "Theatre Arts",
+          "description": "Drama and Performing Arts",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "science",
+      "name": "Faculty of Science",
+      "description": "Natural Sciences and Scientific Research",
+      "icon": "fas fa-flask",
+      "departments": [
+        {
+          "id": "archaeology-anthropology",
+          "name": "Archaeology & Anthropology",
+          "description": "Archaeological and Anthropological Studies",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "botany",
+          "name": "Botany",
+          "description": "Plant Sciences and Biology",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "chemistry",
+          "name": "Chemistry",
+          "description": "Chemical Sciences and Research",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "computer-science",
+          "name": "Computer Science",
+          "description": "Computing and Information Technology",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "geography",
+          "name": "Geography",
+          "description": "Physical and Human Geography",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "geology",
+          "name": "Geology",
+          "description": "Earth Sciences and Geological Studies",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "mathematics",
+          "name": "Mathematics",
+          "description": "Pure and Applied Mathematics",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "microbiology",
+          "name": "Microbiology",
+          "description": "Microbial Sciences and Research",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "physics",
+          "name": "Physics",
+          "description": "Physical Sciences and Research",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "statistics",
+          "name": "Statistics",
+          "description": "Statistical Sciences and Data Analysis",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "zoology",
+          "name": "Zoology",
+          "description": "Animal Sciences and Biology",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "agriculture",
+      "name": "Faculty of Agriculture",
+      "description": "Agricultural Sciences and Food Production",
+      "icon": "fas fa-seedling",
+      "departments": [
+        {
+          "id": "agronomy",
+          "name": "Agronomy",
+          "description": "Crop Science and Production",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "animal-science",
+          "name": "Animal Science",
+          "description": "Animal Production and Management",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "crop-protection-environmental-biology",
+          "name": "Crop Protection & Environmental Biology",
+          "description": "Plant Protection and Environmental Studies",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "agricultural-economics",
+          "name": "Agricultural Economics",
+          "description": "Agricultural Economics and Farm Management",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "agricultural-extension-rural-development",
+          "name": "Agricultural Extension & Rural Development",
+          "description": "Extension Services and Rural Development",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "forest-resources-management",
+          "name": "Forest Resources Management",
+          "description": "Forest Conservation and Management",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "wildlife-ecotourism-management",
+          "name": "Wildlife & Ecotourism Management",
+          "description": "Wildlife Conservation and Ecotourism",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "social-sciences",
+      "name": "Faculty of Social Sciences",
+      "description": "Social Sciences and Human Behavior",
+      "icon": "fas fa-users",
+      "departments": [
+        {
+          "id": "economics",
+          "name": "Economics",
+          "description": "Economic Theory and Analysis",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "geography-social",
+          "name": "Geography",
+          "description": "Human and Physical Geography",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "political-science",
+          "name": "Political Science",
+          "description": "Government and Political Systems",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "psychology",
+          "name": "Psychology",
+          "description": "Human Behavior and Mental Processes",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "sociology",
+          "name": "Sociology",
+          "description": "Society and Social Relationships",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "education",
+      "name": "Faculty of Education",
+      "description": "Educational Sciences and Teaching",
+      "icon": "fas fa-graduation-cap",
+      "departments": [
+        {
+          "id": "adult-education",
+          "name": "Adult Education",
+          "description": "Adult Learning and Continuing Education",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "educational-management",
+          "name": "Educational Management",
+          "description": "Educational Administration and Leadership",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "guidance-counselling",
+          "name": "Guidance & Counselling",
+          "description": "Student Guidance and Counselling Services",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "human-kinetics-health-education",
+          "name": "Human Kinetics & Health Education",
+          "description": "Physical Education and Health Sciences",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "library-archival-information-studies",
+          "name": "Library Archival & Information Studies",
+          "description": "Information Science and Library Management",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "special-education",
+          "name": "Special Education",
+          "description": "Special Needs Education and Support",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "social-work",
+          "name": "Social Work",
+          "description": "Social Work and Community Development",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "teacher-education",
+          "name": "Teacher Education",
+          "description": "Teacher Training and Development",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "veterinary-medicine",
+      "name": "Faculty of Veterinary Medicine",
+      "description": "Veterinary Sciences and Animal Health",
+      "icon": "fas fa-paw",
+      "departments": [
+        {
+          "id": "veterinary-anatomy",
+          "name": "Veterinary Anatomy",
+          "description": "Animal Anatomy and Structure",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "600l", "name": "600 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "veterinary-medicine",
+          "name": "Veterinary Medicine",
+          "description": "Animal Medicine and Treatment",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "600l", "name": "600 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "veterinary-microbiology",
+          "name": "Veterinary Microbiology",
+          "description": "Animal Microbiology and Infectious Diseases",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "600l", "name": "600 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "veterinary-parasitology",
+          "name": "Veterinary Parasitology",
+          "description": "Animal Parasites and Parasitic Diseases",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "600l", "name": "600 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "veterinary-pathology",
+          "name": "Veterinary Pathology",
+          "description": "Animal Disease Pathology",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "600l", "name": "600 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "veterinary-physiology",
+          "name": "Veterinary Physiology",
+          "description": "Animal Physiology and Function",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "600l", "name": "600 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "veterinary-public-health",
+          "name": "Veterinary Public Health",
+          "description": "Public Health and Veterinary Medicine",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "600l", "name": "600 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "veterinary-surgery-reproduction",
+          "name": "Veterinary Surgery & Reproduction",
+          "description": "Animal Surgery and Reproduction",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "600l", "name": "600 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pharmacy",
+      "name": "Faculty of Pharmacy",
+      "description": "Pharmaceutical Sciences and Drug Development",
+      "icon": "fas fa-pills",
+      "departments": [
+        {
+          "id": "clinical-pharmacy",
+          "name": "Clinical Pharmacy",
+          "description": "Clinical Pharmacy Practice",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "pharmaceutical-chemistry",
+          "name": "Pharmaceutical Chemistry",
+          "description": "Drug Chemistry and Analysis",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "pharmaceutics-industrial-pharmacy",
+          "name": "Pharmaceutics & Industrial Pharmacy",
+          "description": "Drug Formulation and Manufacturing",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "pharmacognosy",
+          "name": "Pharmacognosy",
+          "description": "Natural Product Drug Discovery",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "pharmacology-toxicology",
+          "name": "Pharmacology & Toxicology",
+          "description": "Drug Action and Toxicity Studies",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "technology",
+      "name": "Faculty of Technology",
+      "description": "Engineering and Technology",
+      "icon": "fas fa-cogs",
+      "departments": [
+        {
+          "id": "agricultural-environmental-engineering",
+          "name": "Agricultural & Environmental Engineering",
+          "description": "Agricultural and Environmental Engineering",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "civil-engineering",
+          "name": "Civil Engineering",
+          "description": "Civil and Structural Engineering",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "electrical-electronics-engineering",
+          "name": "Electrical & Electronics Engineering",
+          "description": "Electrical and Electronics Engineering",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "https://drive.google.com/drive/folders/1SDaPMTxVNjEmY6KtO5mHoBsODWVggjPV"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "food-technology",
+          "name": "Food Technology",
+          "description": "Food Science and Technology",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "industrial-production-engineering",
+          "name": "Industrial & Production Engineering",
+          "description": "Industrial and Production Engineering",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "mechanical-engineering",
+          "name": "Mechanical Engineering",
+          "description": "Mechanical Engineering and Design",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "petroleum-engineering",
+          "name": "Petroleum Engineering",
+          "description": "Petroleum and Gas Engineering",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "wood-products-engineering",
+          "name": "Wood Products Engineering",
+          "description": "Wood Science and Engineering",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "law",
+      "name": "Faculty of Law",
+      "description": "Legal Studies and Jurisprudence",
+      "icon": "fas fa-balance-scale",
+      "departments": [
+        {
+          "id": "private-business-law",
+          "name": "Private & Business Law",
+          "description": "Private and Commercial Law",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "public-law",
+          "name": "Public Law",
+          "description": "Constitutional and Administrative Law",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "public-health",
+      "name": "Faculty of Public Health",
+      "description": "Public Health and Community Medicine",
+      "icon": "fas fa-heartbeat",
+      "departments": [
+        {
+          "id": "epidemiology-medical-statistics",
+          "name": "Epidemiology & Medical Statistics",
+          "description": "Disease Patterns and Medical Statistics",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "health-promotion-education",
+          "name": "Health Promotion & Education",
+          "description": "Health Education and Promotion",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "environmental-health-sciences",
+          "name": "Environmental Health Sciences",
+          "description": "Environmental Health and Safety",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "health-policy-management",
+          "name": "Health Policy & Management",
+          "description": "Health Systems and Policy",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "human-nutrition",
+          "name": "Human Nutrition",
+          "description": "Nutrition Science and Dietetics",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dentistry",
+      "name": "Faculty of Dentistry",
+      "description": "Dental Sciences and Oral Health",
+      "icon": "fas fa-tooth",
+      "departments": [
+        {
+          "id": "child-oral-health",
+          "name": "Child Oral Health",
+          "description": "Pediatric Dentistry and Orthodontics",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "oral-maxillofacial-surgery",
+          "name": "Oral & Maxillofacial Surgery",
+          "description": "Oral Surgery and Maxillofacial Medicine",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "preventive-dentistry",
+          "name": "Preventive Dentistry",
+          "description": "Preventive and Community Dentistry",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "restorative-dentistry",
+          "name": "Restorative Dentistry",
+          "description": "Restorative and Aesthetic Dentistry",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clinical-sciences",
+      "name": "Faculty of Clinical Sciences",
+      "description": "Clinical Medicine and Healthcare",
+      "icon": "fas fa-stethoscope",
+      "departments": [
+        {
+          "id": "medicine-surgery",
+          "name": "Medicine & Surgery",
+          "description": "Clinical Medicine and Surgery",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "600l", "name": "600 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "nursing",
+          "name": "Nursing",
+          "description": "Nursing Science and Practice",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "physiotherapy",
+          "name": "Physiotherapy",
+          "description": "Physical Therapy and Rehabilitation",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "radiography",
+          "name": "Radiography",
+          "description": "Medical Imaging and Radiological Sciences",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "basic-medical-sciences",
+      "name": "Faculty of Basic Medical Sciences",
+      "description": "Basic Medical and Health Sciences",
+      "icon": "fas fa-microscope",
+      "departments": [
+        {
+          "id": "anatomy",
+          "name": "Anatomy",
+          "description": "Human Anatomy and Structure",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "biochemistry",
+          "name": "Biochemistry",
+          "description": "Molecular Biology and Biochemistry",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "physiology",
+          "name": "Physiology",
+          "description": "Human Physiology and Function",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "pharmacology",
+          "name": "Pharmacology",
+          "description": "Drug Action and Therapeutics",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "economics-management-sciences",
+      "name": "Faculty of Economics and Management Sciences",
+      "description": "Economics, Business and Management",
+      "icon": "fas fa-chart-line",
+      "departments": [
+        {
+          "id": "accounting",
+          "name": "Accounting",
+          "description": "Financial Accounting and Auditing",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "banking-finance",
+          "name": "Banking & Finance",
+          "description": "Banking and Financial Services",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "business-administration",
+          "name": "Business Administration",
+          "description": "Business Management and Administration",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "marketing",
+          "name": "Marketing",
+          "description": "Marketing and Consumer Behavior",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "insurance",
+          "name": "Insurance",
+          "description": "Insurance and Risk Management",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "renewable-natural-resources",
+      "name": "Faculty of Renewable Natural Resources",
+      "description": "Natural Resources and Environmental Management",
+      "icon": "fas fa-leaf",
+      "departments": [
+        {
+          "id": "aquaculture-fisheries-management",
+          "name": "Aquaculture & Fisheries Management",
+          "description": "Fish Farming and Fisheries Science",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "forest-production-products",
+          "name": "Forest Production & Products",
+          "description": "Forest Production and Wood Science",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "social-environmental-forestry",
+          "name": "Social & Environmental Forestry",
+          "description": "Community Forestry and Environmental Conservation",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "wildlife-ecotourism-management-renewable",
+          "name": "Wildlife & Ecotourism Management",
+          "description": "Wildlife Conservation and Ecotourism",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "environmental-design-management",
+      "name": "Faculty of Environmental Design and Management",
+      "description": "Environmental Design and Planning",
+      "icon": "fas fa-building",
+      "departments": [
+        {
+          "id": "architecture",
+          "name": "Architecture",
+          "description": "Architectural Design and Planning",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "500l", "name": "500 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "estate-management",
+          "name": "Estate Management",
+          "description": "Real Estate and Property Management",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "urban-regional-planning",
+          "name": "Urban & Regional Planning",
+          "description": "Urban Planning and Development",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        },
+        {
+          "id": "quantity-surveying",
+          "name": "Quantity Surveying",
+          "description": "Construction Cost Management",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "multidisciplinary-studies",
+      "name": "Faculty of Multidisciplinary Studies",
+      "description": "Interdisciplinary Academic Programs",
+      "icon": "fas fa-puzzle-piece",
+      "departments": [
+        {
+          "id": "interdisciplinary-programmes",
+          "name": "Various interdisciplinary programmes",
+          "description": "Cross-disciplinary Academic Programs",
+          "levels": [
+            {"id": "100l", "name": "100 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "200l", "name": "200 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "300l", "name": "300 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"},
+            {"id": "400l", "name": "400 Level", "driveUrl": "INSERT_YOUR_GOOGLE_DRIVE_LINK_HERE"}
+          ]
+        }
+      ]
+    }
+  ]
+}

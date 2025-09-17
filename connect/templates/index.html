@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Welcome - University of Ibadan Social Platform{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1 class="display-4 fw-bold text-white mb-4">
+                        Welcome to <span class="text-ui-gold">UI Social</span>
+                    </h1>
+                    <p class="lead text-white mb-4">
+                        Connect with fellow students and lecturers at the University of Ibadan. 
+                        Share your academic journey, collaborate on projects, and build lasting 
+                        relationships within the UI community.
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="{{ url_for('register') }}" class="btn btn-ui-gold btn-lg me-3">
+                            <i class="fas fa-user-plus me-2"></i>Join Now
+                        </a>
+                        <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">
+                            <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="hero-illustration">
+                    <div class="feature-cards">
+                        <div class="card feature-card">
+                            <div class="card-body text-center">
+                                <i class="fas fa-users fa-3x text-ui-blue mb-3"></i>
+                                <h5>Connect</h5>
+                                <p class="text-muted">Build networks with students and faculty</p>
+                            </div>
+                        </div>
+                        <div class="card feature-card">
+                            <div class="card-body text-center">
+                                <i class="fas fa-share-alt fa-3x text-ui-blue mb-3"></i>
+                                <h5>Share</h5>
+                                <p class="text-muted">Post updates and academic content</p>
+                            </div>
+                        </div>
+                        <div class="card feature-card">
+                            <div class="card-body text-center">
+                                <i class="fas fa-graduation-cap fa-3x text-ui-blue mb-3"></i>
+                                <h5>Learn</h5>
+                                <p class="text-muted">Collaborate on academic projects</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center mb-5">
+                <h2 class="fw-bold text-ui-blue">Why Choose UI Social?</h2>
+                <p class="lead text-muted">The premier social platform for the UI community</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-shield-alt fa-3x text-ui-blue mb-3"></i>
+                        <h5 class="fw-bold">Secure & Private</h5>
+                        <p class="text-muted">Your data is protected with industry-standard security measures.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-mobile-alt fa-3x text-ui-blue mb-3"></i>
+                        <h5 class="fw-bold">Mobile Friendly</h5>
+                        <p class="text-muted">Access your community anywhere with our responsive design.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body text-center p-4">
+                        <i class="fas fa-university fa-3x text-ui-blue mb-3"></i>
+                        <h5 class="fw-bold">Academic Focus</h5>
+                        <p class="text-muted">Built specifically for the academic community's needs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h2 class="fw-bold text-ui-blue mb-4">Ready to Get Started?</h2>
+                <p class="lead mb-4">
+                    Join thousands of students and lecturers already using UI Social to enhance 
+                    their academic experience. Create your profile today and start connecting!
+                </p>
+                <a href="{{ url_for('register') }}" class="btn btn-ui-blue btn-lg">
+                    <i class="fas fa-rocket me-2"></i>Get Started Now
+                </a>
+            </div>
+            <div class="col-lg-6">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">18</div>
+                        <div class="stat-label">Departments</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">UI Community</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Available</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">Free</div>
+                        <div class="stat-label">For Students</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

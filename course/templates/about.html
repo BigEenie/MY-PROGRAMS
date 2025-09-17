@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Developer - {{ settings.university_name }} {{ settings.portal_title }}</title>
+    <meta name="description" content="Meet the developer behind the {{ settings.university_name }} Course Materials Portal">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="{{ url_for('static', filename='images/ui-logo.svg') }}" alt="UI Logo" class="nav-logo">
+                <div class="nav-text">
+                    <h1>{{ settings.university_name }}</h1>
+                    <span>{{ settings.portal_title }}</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+                <a href="{{ url_for('index') }}#materials" class="nav-link">Materials</a>
+                <a href="{{ url_for('about') }}" class="nav-link active">About Developer</a>
+                <!--<a href="{{ url_for('admin_dashboard') }}" class="nav-link admin-link">
+                    <i class="fas fa-cogs"></i> Admin
+                </a>-->
+            </div>
+            <div class="nav-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-header">
+                    <div class="profile-image">
+                        <div class="profile-placeholder">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="profile-status">
+                            <i class="fas fa-circle online"></i>
+                            Available
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <h1 class="profile-name">Site Developer</h1>
+                        <p class="profile-title">Full-Stack Developer & UI Student</p>
+                        <div class="profile-badges">
+                            <span class="badge"><i class="fas fa-graduation-cap"></i> UI Student</span>
+                            <span class="badge"><i class="fas fa-code"></i> Developer</span>
+                            <span class="badge"><i class="fas fa-heart"></i> UI Enthusiast</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-content">
+                    <div class="content-section">
+                        <h2><i class="fas fa-info-circle"></i> About This Project</h2>
+                        <p>
+                            Welcome to the {{ settings.university_name }} Course Materials Portal! This platform was created 
+                            with a passion for making academic resources more accessible to fellow UI students. 
+                            As a current student at the {{ settings.university_name }}, I understand the challenges of 
+                            finding and organizing course materials across different faculties and departments.
+                        </p>
+                        <p>
+                            This portal serves as a centralized hub where students can easily navigate through 
+                            their faculties, departments, and academic levels to access relevant course materials 
+                            stored on Google Drive. The goal is to create a seamless, beautiful, and intuitive 
+                            experience for academic resource discovery.
+                        </p>
+                    </div>
+
+                    <div class="content-section">
+                        <h2><i class="fas fa-lightbulb"></i> Motivation</h2>
+                        <div class="motivation-grid">
+                            <div class="motivation-card">
+                                <i class="fas fa-users"></i>
+                                <h3>For Students</h3>
+                                <p>Making academic resources easily accessible to all UI students, regardless of their technical background.</p>
+                            </div>
+                            <div class="motivation-card">
+                                <i class="fas fa-mobile-alt"></i>
+                                <h3>Mobile-First</h3>
+                                <p>Designed with mobile users in mind, ensuring seamless access from any device, anywhere.</p>
+                            </div>
+                            <div class="motivation-card">
+                                <i class="fas fa-rocket"></i>
+                                <h3>Innovation</h3>
+                                <p>Bringing modern web technologies to academic resource management at UI.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2><i class="fas fa-cogs"></i> Technical Details</h2>
+                        <div class="tech-stack">
+                            <div class="tech-category">
+                                <h3>Backend Technologies</h3>
+                                <div class="tech-tags">
+                                    <span class="tech-tag python">Python Flask</span>
+                                    <span class="tech-tag jinja">Jinja2 Templates</span>
+                                    <span class="tech-tag json">JSON Storage</span>
+                                    <span class="tech-tag security">Secure Authentication</span>
+                                </div>
+                            </div>
+                            <div class="tech-category">
+                                <h3>Frontend Technologies</h3>
+                                <div class="tech-tags">
+                                    <span class="tech-tag html">HTML5</span>
+                                    <span class="tech-tag css">CSS3</span>
+                                    <span class="tech-tag js">JavaScript ES6+</span>
+                                    <span class="tech-tag responsive">Responsive Design</span>
+                                </div>
+                            </div>
+                            <div class="tech-category">
+                                <h3>Features</h3>
+                                <div class="tech-tags">
+                                    <span class="tech-tag feature">Google Drive Integration</span>
+                                    <span class="tech-tag feature">Admin Panel</span>
+                                    <span class="tech-tag feature">Mobile Optimized</span>
+                                    <span class="tech-tag feature">Fast Loading</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2><i class="fas fa-envelope"></i> Get In Touch</h2>
+                        <p>
+                            Have suggestions, found a bug, or want to contribute? I'd love to hear from you! 
+                            This project is constantly evolving to better serve the UI community.
+                        </p>
+                        <div class="contact-methods">
+                            <div class="contact-card">
+                                <i class="fas fa-envelope"></i>
+                                <h3>Email</h3>
+                                <p>Send me your feedback or suggestions</p>
+                                <a href="mailto:developer@ui-materials.com" class="contact-link">
+                                    developer@ui-materials.com
+                                </a>
+                            </div>
+                            <div class="contact-card">
+                                <i class="fab fa-github"></i>
+                                <h3>GitHub</h3>
+                                <p>Contribute to the project</p>
+                                <a href="#" class="contact-link">
+                                    @ui-materials-portal
+                                </a>
+                            </div>
+                            <div class="contact-card">
+                                <i class="fas fa-university"></i>
+                                <h3>Campus</h3>
+                                <p>Find me around UI campus</p>
+                                <span class="contact-link">
+                                    {{ settings.university_name }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-section">
+                        <h2><i class="fas fa-heart"></i> Acknowledgments</h2>
+                        <div class="acknowledgments">
+                            <p>Special thanks to:</p>
+                            <ul>
+                                <li><strong>{{ settings.university_name }}</strong> - For the excellent academic environment</li>
+                                <li><strong>Fellow UI Students</strong> - For feedback and testing</li>
+                                <li><strong>Faculty Members</strong> - For their support and course materials</li>
+                                <li><strong>The Open Source Community</strong> - For the amazing tools and libraries</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="back-to-home">
+                    <a href="{{ url_for('index') }}" class="cta-button">
+                        <i class="fas fa-home"></i>
+                        Back to Portal
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-brand">
+                        <img src="{{ url_for('static', filename='images/ui-logo.svg') }}" alt="UI Logo" class="footer-logo">
+                        <h3>{{ settings.university_name }}</h3>
+                        <p>{{ settings.university_motto }}</p>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="{{ url_for('index') }}">Home</a></li>
+                        <li><a href="{{ url_for('index') }}#materials">Course Materials</a></li>
+                        <li><a href="{{ url_for('about') }}">About Developer</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> {{ settings.university_address }}</p>
+                    <p><i class="fas fa-phone"></i> {{ settings.university_phone }}</p>
+                    <p><i class="fas fa-envelope"></i> {{ settings.university_email }}</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow UI</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 {{ settings.university_name }} {{ settings.portal_title }}. All rights reserved.</p>
+                <p>Developed with ❤️ for UI Students</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="{{ url_for('static', filename='js/config.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

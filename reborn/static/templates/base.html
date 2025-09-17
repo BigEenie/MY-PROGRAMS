@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{{ university.name if university else 'University Marketplace' }}{% endblock %}</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    
+    {% if university %}
+    <style>
+        :root {
+            --primary-color: {{ university.primary_color or '#667eea' }};
+            --secondary-color: {{ university.secondary_color or '#f093fb' }};
+            --accent-color: {{ university.accent_color or '#ffecd2' }};
+        }
+    </style>
+    {% endif %}
+</head>
+<body class="bg-animated">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top glass-effect">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="{{ url_for('index') }}">
+                {% if university and university.logo_url %}
+                    <img src="{{ university.logo_url }}" 
+                         alt="{{ university.name }} Logo" 
+                         class="navbar-logo me-2"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+                {% endif %}
+                <i class="fas fa-graduation-cap me-2" {% if university and university.logo_url %}style="display:none;"{% endif %}></i>
+                {{ university.name if university else 'University Marketplace' }}
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('index') }}">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    {% if admin_logged_in %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin') }}">
+                            <i class="fas fa-cog me-1"></i>Admin Panel
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_logout') }}">
+                            <i class="fas fa-sign-out-alt me-1"></i>Logout
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('admin_login') }}">
+                            <i class="fas fa-user-shield me-1"></i>Admin
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="container mt-3">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ 'danger' if category == 'error' else 'primary' if category == 'info' else category }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-effect text-light py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+    <h5 class="mb-3 text-dark">
+        {% if university and university.logo_url %}
+            <img src="{{ university.logo_url }}" 
+                 alt="{{ university.name }} Logo" 
+                 class="footer-logo me-2"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';">
+        {% endif %}
+        <i class="fas fa-graduation-cap me-2" {% if university and university.logo_url %}style="display:none;"{% endif %}></i>
+        {{ university.name if university else 'University Marketplace' }}
+    </h5>
+    <p class="text-dark opacity-85">Connecting students and local marketers for convenient campus commerce with secure cash-on-delivery transactions.</p>
+    <div class="d-flex gap-3 mt-3">
+        <span class="badge hero-badge">
+            <i class="fas fa-money-bill-wave me-1"></i>Cash on Delivery
+        </span>
+        <span class="badge hero-badge">
+            <i class="fas fa-shield-alt me-1"></i>Safe Transactions
+        </span>
+    </div>
+</div>
+<div class="col-md-6 text-md-end">
+    <h6 class="text-dark mb-3 fw-bold">Quick Links</h6>
+    <div class="d-flex flex-column align-items-md-end gap-2">
+        <a href="{{ url_for('index') }}" class="text-dark text-decoration-none opacity-75 hover-opacity-100">
+            <i class="fas fa-home me-1"></i>Browse Products
+        </a>
+        {% if admin_logged_in %}
+        <a href="{{ url_for('admin') }}" class="text-dark text-decoration-none opacity-75 hover-opacity-100">
+            <i class="fas fa-cog me-1"></i>Admin Panel
+        </a>
+        {% else %}
+        <a href="{{ url_for('admin_login') }}" class="text-dark text-decoration-none opacity-75 hover-opacity-100">
+            <i class="fas fa-user-shield me-1"></i>Admin Login
+        </a>
+        {% endif %}
+    </div>
+    <hr class="text-dark opacity-30 my-3">
+    <p class="text-dark opacity-60 mb-0">© 2025 {{ university.name if university else 'University Marketplace' }}. All rights reserved.<br>Built by Emmyfest - Agricultural and 
+    Environmental Engineering <br>Contact the Admin Via: 08108357213 - emmyfest643@gmail.com </p>
+</div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
