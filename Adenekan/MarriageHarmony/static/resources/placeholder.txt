@@ -1,0 +1,1 @@
+PDF resources would be stored here in a production environment.

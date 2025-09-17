@@ -1,0 +1,1340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UI Marketplace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    // Initialize EmailJS with your public key
+    emailjs.init("wgJrDGyhJ4qdw1ijA");
+    
+    // Define EmailJS constants
+    const EMAILJS_SERVICE_ID = 'service_ms8akfr';
+    const EMAILJS_OTP_TEMPLATE = 'template_rqcl4sf';
+    const EMAILJS_RESET_TEMPLATE = 'template_lwx5vgl';
+  </script>
+
+  <style>
+    :root {
+      --bg-color: #121a2b;
+      --container-color: #1f2a44;
+      --text-color: #e0e0e0;
+      --input-bg: #2a3a60;
+      --input-focus: #3a4a7a;
+      --border-color: #375a7f;
+      --accent-color: #ffa726;
+      --accent-hover: #fb8c00;
+      --shadow-color: rgba(255, 167, 38, 0.6);
+      --secondary-text: #bbb;
+      --error-color: #ff6b6b;
+      --success-color: #4caf50;
+      --active-color: #4caf50;
+      --suspended-color: #ff9800;
+      --deleted-color: #f44336;
+    }
+    .light-mode {
+      --bg-color: #f5f5f5;
+      --container-color: #ffffff;
+      --text-color: #333333;
+      --input-bg: #f0f0f0;
+      --input-focus: #e0e0e0;
+      --border-color: #cccccc;
+      --accent-color: #ff8f00;
+      --accent-hover: #ff6f00;
+      --shadow-color: rgba(255, 143, 0, 0.3);
+      --secondary-text: #666;
+      --error-color: #d32f2f;
+      --success-color: #2e7d32;
+      --active-color: #2e7d32;
+      --suspended-color: #ff9800;
+      --deleted-color: #f44336;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      transition: background-color 0.4s ease, color 0.4s ease;
+    }
+    .container {
+      background-color: var(--container-color);
+      padding: 25px;
+      border-radius: 12px;
+      width: 380px;
+      max-width: 95vw;
+      text-align: center;
+      box-shadow: 0 0 15px var(--shadow-color);
+      transition: background-color 0.4s ease;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .logo-roll {
+      width: 140px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .logo-roll {
+        animation: roll 4s linear infinite;
+      }
+    }
+    @keyframes roll {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .animated-text {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      user-select: none;
+      margin-bottom: 30px;
+    }
+    .animated-text span {
+      opacity: 0;
+      transform: translateY(20px);
+      animation-fill-mode: forwards;
+      animation-name: fadeSlideUp;
+      animation-duration: 0.5s;
+    }
+    @keyframes fadeSlideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 14px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border-color);
+      font-size: 16px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+      outline: none;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="tel"]:focus,
+    input[type="number"]:focus {
+      border-color: var(--accent-color);
+      background-color: var(--input-focus);
+    }
+    .password-input-container {
+      position: relative;
+      width: 100%;
+    }
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: var(--secondary-text);
+    }
+    label.checkbox-label {
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+      font-size: 14px;
+      cursor: pointer;
+      user-select: none;
+    }
+    label.checkbox-label input[type="checkbox"] {
+      margin-right: 8px;
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    button {
+      background-color: var(--accent-color);
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+      margin-top: 20px;
+      color: #121212;
+      transition: background-color 0.3s ease;
+      box-sizing: border-box;
+    }
+    button:hover {
+      background-color: var(--accent-hover);
+    }
+    .toggle {
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--secondary-text);
+    }
+    .toggle button {
+      background: none;
+      border: none;
+      color: var(--accent-color);
+      cursor: pointer;
+      font-weight: 600;
+      padding: 0;
+      margin: 6px 0 0 0;
+      width: auto;
+      display: inline;
+    }
+    .error-message {
+      color: var(--error-color);
+      font-size: 13px;
+      margin-top: 5px;
+      text-align: left;
+    }
+    .success-message {
+      color: var(--success-color);
+      font-size: 13px;
+      margin-top: 5px;
+      text-align: left;
+    }
+    .theme-toggle-container {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+    }
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--accent-color);
+      cursor: pointer;
+      font-size: 24px;
+      padding: 5px;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+    .theme-toggle:hover {
+      background-color: rgba(255, 167, 38, 0.1);
+    }
+    h2 {
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+    .admin-login-btn {
+      margin-top: 15px;
+      background: none;
+      border: none;
+      color: var(--accent-color);
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .admin-login-btn:hover {
+      color: var(--accent-hover);
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: var(--secondary-text);
+      border-top: 1px solid var(--border-color);
+      padding-top: 15px;
+    }
+    .footer a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .status-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-left: 8px;
+    }
+    .status-active {
+      background-color: var(--active-color);
+      color: white;
+    }
+    .status-suspended {
+      background-color: var(--suspended-color);
+      color: white;
+    }
+    .status-deleted {
+      background-color: var(--deleted-color);
+      color: white;
+    }
+    .action-btn {
+      padding: 5px 10px;
+      margin: 2px;
+      font-size: 12px;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .action-btn:hover {
+      opacity: 0.8;
+    }
+    .btn-active {
+      background-color: var(--active-color);
+      color: white;
+    }
+    .btn-suspend {
+      background-color: var(--suspended-color);
+      color: white;
+    }
+    .btn-delete {
+      background-color: var(--deleted-color);
+      color: white;
+    }
+    .btn-release {
+      background-color: #2196F3;
+      color: white;
+    }
+    .filter-btns {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      margin-bottom: 15px;
+    }
+    .filter-btn {
+      padding: 5px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      background: var(--input-bg);
+      color: var(--text-color);
+      cursor: pointer;
+    }
+    .filter-btn.active {
+      background: var(--accent-color);
+      color: #121212;
+    }
+    .search-box {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+    .timestamp {
+      font-size: 11px;
+      color: var(--secondary-text);
+      margin-top: 3px;
+    }
+    .captcha-container {
+      margin: 15px 0;
+      padding: 10px;
+      background: var(--input-bg);
+      border-radius: 8px;
+    }
+    .archive-container {
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-color);
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // Initialize database
+    const initializeDB = () => {
+      const db = {
+        admins: [
+          { email: "isaacarinolatech@gmail.com", password: "AdminUI@008", name: "Isaac Admin" },
+          { email: "emmyfest643@gmail.com", password: "AdminUI@001", name: "Emmyfest Admin" }
+        ],
+        users: [],
+        archive: []
+      };
+
+      // Load from localStorage if available
+      if (localStorage.getItem('uiMarketplaceDB')) {
+        return JSON.parse(localStorage.getItem('uiMarketplaceDB'));
+      }
+      return db;
+    };
+
+    // Save to localStorage
+    const saveDB = (db) => {
+      localStorage.setItem('uiMarketplaceDB', JSON.stringify(db));
+    };
+
+    // CAPTCHA questions
+    const CAPTCHA_QUESTIONS = [
+      { question: "3 + 5", answer: "8" },
+      { question: "10 - 4", answer: "6" },
+      { question: "2 × 3", answer: "6" },
+      { question: "9 ÷ 3", answer: "3" },
+      { question: "7 + 8", answer: "15" },
+      { question: "12 - 7", answer: "5" },
+      { question: "4 × 2", answer: "8" },
+      { question: "15 ÷ 5", answer: "3" }
+    ];
+
+    const getRandomCaptcha = () => {
+      return CAPTCHA_QUESTIONS[Math.floor(Math.random() * CAPTCHA_QUESTIONS.length)];
+    };
+
+    function AnimatedText({ text }) {
+      return (
+        <div className="animated-text" aria-label={text}>
+          {text.split('').map((char, i) => (
+            <span key={i} style={{ animationDelay: ${i * 0.1}s }}>{char}</span>
+          ))}
+        </div>
+      );
+    }
+
+    function SplashScreen() {
+      return (
+        <div className="container" role="banner" aria-live="polite">
+          <img
+            src="https://files.catbox.moe/3pxric.png"
+            alt="UI Marketplace Logo"
+            className="logo-roll"
+          />
+          <AnimatedText text="University of Ibadan" />
+          <AnimatedText text="Marketplace" />
+        </div>
+      );
+    }
+
+    function App() {
+      const [showSplash, setShowSplash] = useState(true);
+      const [isLogin, setIsLogin] = useState(true);
+      const [robotChecked, setRobotChecked] = useState(false);
+      const [darkMode, setDarkMode] = useState(true);
+      const [showAdminLogin, setShowAdminLogin] = useState(false);
+      const [adminLoggedIn, setAdminLoggedIn] = useState(false);
+      const [mockDB, setMockDB] = useState(initializeDB());
+
+      useEffect(() => {
+        const timer = setTimeout(() => setShowSplash(false), 4000);
+        return () => clearTimeout(timer);
+      }, []);
+
+      useEffect(() => {
+        if (darkMode) {
+          document.documentElement.classList.remove('light-mode');
+        } else {
+          document.documentElement.classList.add('light-mode');
+        }
+      }, [darkMode]);
+
+      const toggleForm = () => {
+        setIsLogin(!isLogin);
+        setRobotChecked(false);
+      };
+
+      const toggleTheme = () => {
+        setDarkMode(!darkMode);
+      };
+
+      const handleAdminLogin = (success) => {
+        setAdminLoggedIn(success);
+        setShowAdminLogin(false);
+      };
+
+      const handleAdminLogout = () => {
+        setAdminLoggedIn(false);
+      };
+
+      const updateDB = (newDB) => {
+        setMockDB(newDB);
+        saveDB(newDB);
+      };
+
+      if (showSplash) {
+        return <SplashScreen />;
+      }
+
+      if (adminLoggedIn) {
+        return <AdminPanel onLogout={handleAdminLogout} db={mockDB} updateDB={updateDB} />;
+      }
+
+      if (showAdminLogin) {
+        return <AdminLogin onLogin={handleAdminLogin} onBack={() => setShowAdminLogin(false)} db={mockDB} />;
+      }
+
+      return (
+        <MainPage
+          isLogin={isLogin}
+          toggleForm={toggleForm}
+          robotChecked={robotChecked}
+          setRobotChecked={setRobotChecked}
+          darkMode={darkMode}
+          toggleTheme={toggleTheme}
+          onAdminLogin={() => setShowAdminLogin(true)}
+          db={mockDB}
+          updateDB={updateDB}
+        />
+      );
+    }
+
+    function MainPage({ isLogin, toggleForm, robotChecked, setRobotChecked, darkMode, toggleTheme, onAdminLogin, db, updateDB }) {
+      return (
+        <div className="container" role="main">
+          <div className="theme-toggle-container">
+            <button 
+              className="theme-toggle" 
+              onClick={toggleTheme} 
+              aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
+            >
+              {darkMode ? '☀️' : '🌙'}
+            </button>
+          </div>
+          <h2>{isLogin ? "Sign In" : "Sign Up"}</h2>
+          {isLogin ? (
+            <SignInForm robotChecked={robotChecked} setRobotChecked={setRobotChecked} db={db} updateDB={updateDB} />
+          ) : (
+            <SignUpForm robotChecked={robotChecked} setRobotChecked={setRobotChecked} db={db} updateDB={updateDB} />
+          )}
+          <div className="toggle">
+            {isLogin ? "Don't have an account?" : "Already have an account?"}
+            <br />
+            <button onClick={toggleForm} aria-label={isLogin ? "Switch to Sign Up" : "Switch to Sign In"}>
+              {isLogin ? "Sign Up" : "Sign In"}
+            </button>
+          </div>
+          <button className="admin-login-btn" onClick={onAdminLogin}>
+            Admin Login
+          </button>
+          <div className="footer">
+            Developed by <a href="https://wa.me/2348135138141" target="_blank" rel="noopener noreferrer">Isaac Arinola</a> and <a href="https://wa.me/2348108357213" target="_blank" rel="noopener noreferrer">Emmyfest</a><br />
+            All rights reserved | University of Ibadan
+          </div>
+        </div>
+      );
+    }
+
+    function AdminLogin({ onLogin, onBack, db }) {
+      const [email, setEmail] = useState('');
+      const [password, setPassword] = useState('');
+      const [showPassword, setShowPassword] = useState(false);
+      const [error, setError] = useState('');
+      const [captcha, setCaptcha] = useState(getRandomCaptcha());
+      const [captchaAnswer, setCaptchaAnswer] = useState('');
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        setError('');
+        
+        if (captchaAnswer !== captcha.answer) {
+          setError("CAPTCHA answer is incorrect");
+          setCaptcha(getRandomCaptcha());
+          return;
+        }
+        
+        const admin = db.admins.find(a => a.email === email && a.password === password);
+        
+        if (admin) {
+          onLogin(true);
+        } else {
+          setError("Invalid admin credentials");
+          setCaptcha(getRandomCaptcha());
+        }
+      };
+
+      return (
+        <div className="container">
+          <h2>Admin Login</h2>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="email"
+              placeholder="Admin Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <div className="password-input-container">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Admin Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <i 
+                className={password-toggle fas ${showPassword ? "fa-eye-slash" : "fa-eye"}}
+                onClick={() => setShowPassword(!showPassword)}
+              />
+            </div>
+            <div className="captcha-container">
+              <p>Solve: {captcha.question} = ?</p>
+              <input
+                type="text"
+                placeholder="Your answer"
+                value={captchaAnswer}
+                onChange={(e) => setCaptchaAnswer(e.target.value)}
+                required
+              />
+            </div>
+            {error && <div className="error-message">{error}</div>}
+            <button type="submit">Login</button>
+          </form>
+          <button onClick={onBack} style={{ marginTop: '10px' }}>Back to Main</button>
+        </div>
+      );
+    }
+
+    function AdminPanel({ onLogout, db, updateDB }) {
+      const [filter, setFilter] = useState('all');
+      const [searchTerm, setSearchTerm] = useState('');
+      const [activeTab, setActiveTab] = useState('users');
+      
+      const filteredUsers = db.users.filter(user => {
+        if (filter === 'active' && user.status !== 'active') return false;
+        if (filter === 'suspended' && user.status !== 'suspended') return false;
+        
+        if (searchTerm) {
+          const term = searchTerm.toLowerCase();
+          return (
+            user.email.toLowerCase().includes(term) ||
+            user.fullName.toLowerCase().includes(term) ||
+            user.phone.includes(term)
+          );
+        }
+        
+        return true;
+      });
+
+      const toggleUserStatus = (email, status) => {
+        const newDB = {...db};
+        const userIndex = newDB.users.findIndex(u => u.email === email);
+        
+        if (userIndex !== -1) {
+          newDB.users[userIndex].status = status;
+          newDB.users[userIndex].updatedAt = new Date().toISOString();
+          
+          if (status === 'deleted') {
+            newDB.archive.push(newDB.users[userIndex]);
+            newDB.users.splice(userIndex, 1);
+          }
+          
+          updateDB(newDB);
+        }
+      };
+
+      const releaseUser = (email) => {
+        const newDB = {...db};
+        const userIndex = newDB.archive.findIndex(u => u.email === email);
+        
+        if (userIndex !== -1) {
+          newDB.archive[userIndex].status = 'active';
+          newDB.users.push(newDB.archive[userIndex]);
+          newDB.archive.splice(userIndex, 1);
+          updateDB(newDB);
+        }
+      };
+
+      return (
+        <div className="container">
+          <h2>Admin Panel</h2>
+          <button 
+            onClick={onLogout} 
+            style={{ 
+              position: 'absolute', 
+              top: '10px', 
+              right: '10px',
+              background: 'transparent',
+              color: 'var(--accent-color)',
+              fontWeight: 'normal'
+            }}
+          >
+            Logout
+          </button>
+          
+          <div className="filter-btns">
+            <button 
+              className={filter-btn ${activeTab === 'users' ? 'active' : ''}}
+              onClick={() => setActiveTab('users')}
+            >
+              Users ({db.users.length})
+            </button>
+            <button 
+              className={filter-btn ${activeTab === 'archive' ? 'active' : ''}}
+              onClick={() => setActiveTab('archive')}
+            >
+              Archive ({db.archive.length})
+            </button>
+          </div>
+          
+          {activeTab === 'users' && (
+            <>
+              <input
+                type="text"
+                className="search-box"
+                placeholder="Search users..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+              
+              <div className="filter-btns">
+                <button 
+                  className={filter-btn ${filter === 'all' ? 'active' : ''}}
+                  onClick={() => setFilter('all')}
+                >
+                  All
+                </button>
+                <button 
+                  className={filter-btn ${filter === 'active' ? 'active' : ''}}
+                  onClick={() => setFilter('active')}
+                >
+                  Active
+                </button>
+                <button 
+                  className={filter-btn ${filter === 'suspended' ? 'active' : ''}}
+                  onClick={() => setFilter('suspended')}
+                >
+                  Suspended
+                </button>
+              </div>
+              
+              <div style={{ textAlign: 'left', marginTop: '15px' }}>
+                <h3>Registered Users ({filteredUsers.length})</h3>
+                {filteredUsers.length > 0 ? (
+                  filteredUsers.map((user, index) => (
+                    <div key={index} style={{ 
+                      border: '1px solid var(--border-color)', 
+                      padding: '10px', 
+                      margin: '10px 0', 
+                      borderRadius: '5px' 
+                    }}>
+                      <p>
+                        <strong>Name:</strong> {user.fullName}
+                        <span className={status-badge status-${user.status || 'active'}}>
+                          {user.status || 'active'}
+                        </span>
+                      </p>
+                      <p><strong>Email:</strong> {user.email}</p>
+                      <p><strong>Phone:</strong> {user.phone}</p>
+                      <div className="timestamp">
+                        Created: {new Date(user.registeredAt).toLocaleString()}
+                        {user.lastLogin && (
+                          <span> | Last login: {new Date(user.lastLogin).toLocaleString()}</span>
+                        )}
+                      </div>
+                      <div style={{ marginTop: '8px' }}>
+                        {user.status === 'suspended' ? (
+                          <button 
+                            className="action-btn btn-active"
+                            onClick={() => toggleUserStatus(user.email, 'active')}
+                          >
+                            Release
+                          </button>
+                        ) : (
+                          <button 
+                            className="action-btn btn-suspend"
+                            onClick={() => toggleUserStatus(user.email, 'suspended')}
+                          >
+                            Suspend
+                          </button>
+                        )}
+                        <button 
+                          className="action-btn btn-delete"
+                          onClick={() => toggleUserStatus(user.email, 'deleted')}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p>No users found</p>
+                )}
+              </div>
+            </>
+          )}
+          
+          {activeTab === 'archive' && (
+            <div className="archive-container">
+              <h3>Archived Users ({db.archive.length})</h3>
+              {db.archive.length > 0 ? (
+                db.archive.map((user, index) => (
+                  <div key={index} style={{ 
+                    border: '1px solid var(--border-color)', 
+                    padding: '10px', 
+                    margin: '10px 0', 
+                    borderRadius: '5px' 
+                  }}>
+                    <p>
+                      <strong>Name:</strong> {user.fullName}
+                      <span className={status-badge status-${user.status}}>
+                        {user.status}
+                      </span>
+                    </p>
+                    <p><strong>Email:</strong> {user.email}</p>
+                    <p><strong>Phone:</strong> {user.phone}</p>
+                    <div className="timestamp">
+                      Created: {new Date(user.registeredAt).toLocaleString()}
+                      {user.lastLogin && (
+                        <span> | Last login: {new Date(user.lastLogin).toLocaleString()}</span>
+                      )}
+                    </div>
+                    <div style={{ marginTop: '8px' }}>
+                      <button 
+                        className="action-btn btn-release"
+                        onClick={() => releaseUser(user.email)}
+                      >
+                        Restore
+                      </button>
+                    </div>
+                  </div>
+                ))
+              ) : (
+                <p>No archived users</p>
+              )}
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    function SignInForm({ robotChecked, setRobotChecked, db, updateDB }) {
+      const [email, setEmail] = useState('');
+      const [password, setPassword] = useState('');
+      const [showPassword, setShowPassword] = useState(false);
+      const [error, setError] = useState('');
+      const [resetStep, setResetStep] = useState(0);
+      const [resetEmail, setResetEmail] = useState('');
+      const [otp, setOtp] = useState('');
+      const [newPassword, setNewPassword] = useState('');
+      const [confirmPassword, setConfirmPassword] = useState('');
+      const [captcha, setCaptcha] = useState(getRandomCaptcha());
+      const [captchaAnswer, setCaptchaAnswer] = useState('');
+
+      const handleSubmit = e => {
+        e.preventDefault();
+        if (!robotChecked) {
+          setError("Please confirm you are not a robot.");
+          return;
+        }
+        
+        if (captchaAnswer !== captcha.answer) {
+          setError("CAPTCHA answer is incorrect");
+          setCaptcha(getRandomCaptcha());
+          return;
+        }
+
+        if (!email || !password) {
+          setError("Please fill in all fields");
+          return;
+        }
+
+        const user = db.users.find(u => u.email === email);
+        
+        if (!user) {
+          setError("Account not found");
+          return;
+        }
+        
+        if (user.status === 'suspended') {
+          setError("Account suspended, contact developer");
+          return;
+        }
+        
+        if (user.password !== password) {
+          setError("Invalid credentials");
+          return;
+        }
+        
+        // Update last login time
+        const newDB = {...db};
+        const userIndex = newDB.users.findIndex(u => u.email === email);
+        newDB.users[userIndex].lastLogin = new Date().toISOString();
+        updateDB(newDB);
+        
+        setError('');
+        alert(Welcome back, ${user.fullName}!);
+      };
+
+      const handlePasswordReset = async e => {
+        e.preventDefault();
+        
+        if (resetStep === 0) {
+          // Step 1: Request email
+          if (!resetEmail) {
+            setError("Please enter your email");
+            return;
+          }
+          
+          const user = db.users.find(u => u.email === resetEmail);
+          if (!user) {
+            setError("Email not found");
+            return;
+          }
+          
+          if (captchaAnswer !== captcha.answer) {
+            setError("CAPTCHA answer is incorrect");
+            setCaptcha(getRandomCaptcha());
+            return;
+          }
+          
+          // Check OTP attempts
+          const attempts = localStorage.getItem(otpAttempts_${resetEmail}) || 0;
+          if (attempts >= 3) {
+            setError("You've reached the maximum OTP attempts for this week");
+            return;
+          }
+          
+          // Generate OTP (6 digits, expires in 30 mins)
+          const otp = Math.floor(100000 + Math.random() * 900000).toString();
+          const otpExpiry = Date.now() + 30 * 60 * 1000;
+          
+          // Store OTP info
+          localStorage.setItem(otp_${resetEmail}, JSON.stringify({
+            code: otp,
+            expires: otpExpiry
+          }));
+          
+          try {
+            await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_RESET_TEMPLATE, {
+              email: resetEmail,
+              passcode: otp
+            });
+            setResetStep(1);
+            setError('');
+          } catch (error) {
+            setError("Failed to send OTP. Try again later.");
+            console.error("Email error:", error);
+          }
+          
+        } else if (resetStep === 1) {
+          // Step 2: Verify OTP
+          const otpData = JSON.parse(localStorage.getItem(otp_${resetEmail}));
+          
+          if (!otpData || otpData.code !== otp) {
+            setError("Invalid OTP");
+            return;
+          }
+          
+          if (Date.now() > otpData.expires) {
+            setError("OTP has expired");
+            return;
+          }
+          
+          setResetStep(2);
+          setError('');
+          
+        } else if (resetStep === 2) {
+          // Step 3: Set new password
+          if (!newPassword || !confirmPassword) {
+            setError("Please fill in both password fields");
+            return;
+          }
+          
+          if (newPassword !== confirmPassword) {
+            setError("Passwords do not match");
+            return;
+          }
+          
+          if (newPassword.length < 8) {
+            setError("Password must be at least 8 characters");
+            return;
+          }
+          
+          // Update password
+          const newDB = {...db};
+          const userIndex = newDB.users.findIndex(u => u.email === resetEmail);
+          if (userIndex !== -1) {
+            newDB.users[userIndex].password = newPassword;
+            newDB.users[userIndex].updatedAt = new Date().toISOString();
+            updateDB(newDB);
+            
+            // Clear OTP data
+            localStorage.removeItem(otp_${resetEmail});
+            
+            setResetStep(3);
+            setError('');
+          }
+        }
+      };
+
+      if (resetStep > 0) {
+        return (
+          <div className="container">
+            <h2>Reset Password</h2>
+            <form onSubmit={handlePasswordReset}>
+              {resetStep === 1 && (
+                <>
+                  <p>OTP sent to {resetEmail}</p>
+                  <input
+                    type="text"
+                    placeholder="Enter 6-digit OTP"
+                    value={otp}
+                    onChange={e => setOtp(e.target.value)}
+                    required
+                  />
+                </>
+              )}
+              
+              {resetStep === 2 && (
+                <>
+                  <div className="password-input-container">
+                    <input
+                      type="password"
+                      placeholder="New Password"
+                      value={newPassword}
+                      onChange={e => setNewPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="password-input-container">
+                    <input
+                      type="password"
+                      placeholder="Confirm New Password"
+                      value={confirmPassword}
+                      onChange={e => setConfirmPassword(e.target.value)}
+                      required
+                    />
+                  </div>
+                </>
+              )}
+              
+              {resetStep === 3 && (
+                <div className="success-message">
+                  Password reset successfully! You can now login with your new password.
+                </div>
+              )}
+              
+              {resetStep < 3 && (
+                <>
+                  {resetStep === 0 && (
+                    <>
+                      <input
+                        type="email"
+                        placeholder="Your email"
+                        value={resetEmail}
+                        onChange={e => setResetEmail(e.target.value)}
+                        required
+                      />
+                      <div className="captcha-container">
+                        <p>Solve: {captcha.question} = ?</p>
+                        <input
+                          type="text"
+                          placeholder="Your answer"
+                          value={captchaAnswer}
+                          onChange={(e) => setCaptchaAnswer(e.target.value)}
+                          required
+                        />
+                      </div>
+                    </>
+                  )}
+                  <button type="submit">
+                    {resetStep === 0 ? "Send OTP" : 
+                     resetStep === 1 ? "Verify OTP" : "Reset Password"}
+                  </button>
+                </>
+              )}
+              
+              {error && <div className="error-message">{error}</div>}
+            </form>
+            <button 
+              onClick={() => {
+                setResetStep(0);
+                setError('');
+              }} 
+              style={{ marginTop: '10px' }}
+            >
+              {resetStep === 3 ? "Back to Login" : "Cancel"}
+            </button>
+          </div>
+        );
+      }
+
+      return (
+        <form onSubmit={handleSubmit} aria-label="Sign In form">
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            required
+            autoComplete="email"
+          />
+          <div className="password-input-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+              autoComplete="current-password"
+            />
+            <i 
+              className={password-toggle fas ${showPassword ? "fa-eye-slash" : "fa-eye"}}
+              onClick={() => setShowPassword(!showPassword)}
+            />
+          </div>
+          <div className="captcha-container">
+            <p>Solve: {captcha.question} = ?</p>
+            <input
+              type="text"
+              placeholder="Your answer"
+              value={captchaAnswer}
+              onChange={(e) => setCaptchaAnswer(e.target.value)}
+              required
+            />
+          </div>
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={robotChecked}
+              onChange={e => setRobotChecked(e.target.checked)}
+            />
+            I am not a robot
+          </label>
+          {error && <div className="error-message" role="alert">{error}</div>}
+          <button type="submit">Sign In</button>
+          <div className="toggle">
+            <button 
+              onClick={() => setResetStep(1)}
+              aria-label="Forgot password"
+            >
+              Forgot Password?
+            </button>
+          </div>
+        </form>
+      );
+    }
+
+    function SignUpForm({ robotChecked, setRobotChecked, db, updateDB }) {
+      const [formData, setFormData] = useState({
+        fullName: '',
+        phone: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
+      const [showPassword, setShowPassword] = useState(false);
+      const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+      const [error, setError] = useState('');
+      const [success, setSuccess] = useState('');
+      const [otpSent, setOtpSent] = useState(false);
+      const [userOtp, setUserOtp] = useState('');
+      const [otpInput, setOtpInput] = useState('');
+      const [captcha, setCaptcha] = useState(getRandomCaptcha());
+      const [captchaAnswer, setCaptchaAnswer] = useState('');
+
+      const sendVerificationEmail = async (email) => {
+        const otp = Math.floor(100000 + Math.random() * 900000);
+        setUserOtp(otp.toString());
+
+        try {
+          await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_OTP_TEMPLATE, {
+            email: email,
+            passcode: otp
+          });
+          setOtpSent(true);
+          setSuccess("OTP sent to your email. Check your inbox!");
+          return true;
+        } catch (error) {
+          setError("Failed to send OTP. Try again later.");
+          console.error("Email error:", error);
+          return false;
+        }
+      };
+
+      const handleChange = e => {
+        const { name, value } = e.target;
+        if (name === 'phone') {
+          let digits = value.replace(/\D/g, '');
+          if (digits.length > 3 && digits.startsWith('234')) {
+            digits = '234' + digits.substring(3, 13);
+          } else if (!digits.startsWith('234')) {
+            digits = '234' + digits.substring(0, 10);
+          } else {
+            digits = digits.substring(0, 13);
+          }
+          setFormData(prev => ({ ...prev, [name]: digits }));
+        } else {
+          setFormData(prev => ({ ...prev, [name]: value }));
+        }
+      };
+
+      const handleSubmit = async e => {
+        e.preventDefault();
+        if (!robotChecked) {
+          setError("Please confirm you are not a robot.");
+          return;
+        }
+        
+        if (captchaAnswer !== captcha.answer) {
+          setError("CAPTCHA answer is incorrect");
+          setCaptcha(getRandomCaptcha());
+          return;
+        }
+
+        if (!formData.fullName || !formData.phone || !formData.email || !formData.password || !formData.confirmPassword) {
+          setError("Please fill in all fields");
+          return;
+        }
+        if (formData.phone.length !== 13 || !formData.phone.startsWith('234')) {
+          setError("Phone number must be in the format 234XXXXXXXXXX (13 digits)");
+          return;
+        }
+        if (formData.password !== formData.confirmPassword) {
+          setError("Passwords do not match!");
+          return;
+        }
+        if (db.users.some(u => u.email === formData.email)) {
+          setError("This email is already registered");
+          return;
+        }
+
+        if (!otpSent) {
+          await sendVerificationEmail(formData.email);
+          return;
+        }
+
+        if (otpInput !== userOtp) {
+          setError("Invalid OTP. Try again.");
+          return;
+        }
+
+        // Add to users
+        const newDB = {...db};
+        newDB.users.push({ 
+          ...formData,
+          status: 'active',
+          registeredAt: new Date().toISOString(),
+          lastLogin: new Date().toISOString()
+        });
+        updateDB(newDB);
+        
+        setSuccess("Registration successful! You can now login.");
+        setFormData({
+          fullName: '',
+          phone: '',
+          email: '',
+          password: '',
+          confirmPassword: '',
+        });
+        setOtpSent(false);
+        setRobotChecked(false);
+        setOtpInput('');
+      };
+
+      return (
+        <form onSubmit={handleSubmit} aria-label="Sign Up form">
+          <input
+            type="text"
+            name="fullName"
+            placeholder="Full Name"
+            value={formData.fullName}
+            onChange={handleChange}
+            required
+            autoComplete="name"
+          />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="234XXXXXXXXXX (e.g., 2348135138141)"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+            autoComplete="tel"
+            pattern="^234\d{10}$"
+            title="Enter Nigerian phone number starting with 234 followed by 10 digits (13 digits total)"
+            maxLength="13"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            autoComplete="email"
+          />
+          <div className="password-input-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              autoComplete="new-password"
+            />
+            <i 
+              className={password-toggle fas ${showPassword ? "fa-eye-slash" : "fa-eye"}}
+              onClick={() => setShowPassword(!showPassword)}
+            />
+          </div>
+          <div className="password-input-container">
+            <input
+              type={showConfirmPassword ? "text" : "password"}
+              name="confirmPassword"
+              placeholder="Confirm Password"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              required
+              autoComplete="new-password"
+            />
+            <i 
+              className={password-toggle fas ${showConfirmPassword ? "fa-eye-slash" : "fa-eye"}}
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            />
+          </div>
+          <div className="captcha-container">
+            <p>Solve: {captcha.question} = ?</p>
+            <input
+              type="text"
+              placeholder="Your answer"
+              value={captchaAnswer}
+              onChange={(e) => setCaptchaAnswer(e.target.value)}
+              required
+            />
+          </div>
+          {otpSent && (
+            <input
+              type="text"
+              placeholder="Enter 6-digit OTP"
+              value={otpInput}
+              onChange={e => setOtpInput(e.target.value)}
+              required
+            />
+          )}
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={robotChecked}
+              onChange={e => setRobotChecked(e.target.checked)}
+            />
+            I am not a robot
+          </label>
+          {error && <div className="error-message" role="alert">{error}</div>}
+          {success && <div className="success-message" role="alert">{success}</div>}
+          <button type="submit">
+            {otpSent ? "Verify OTP & Register" : "Sign Up"}
+          </button>
+        </form>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>

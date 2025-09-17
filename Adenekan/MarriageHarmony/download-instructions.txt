@@ -1,0 +1,60 @@
+HARMONY COUNSELING WEBSITE - DOWNLOAD INSTRUCTIONS
+=====================================================
+
+Your complete marriage counselor website source code is ready for download!
+
+DOWNLOAD FILE: harmony-counseling-complete.tar.gz
+
+WHAT'S INCLUDED:
+- Complete HTML website with all 11 sections
+- Professional CSS styling with calming colors
+- Interactive JavaScript functionality  
+- Python Flask backend with database
+- Contact forms and booking system
+- Newsletter signup integration
+- Downloadable PDF resources
+- SEO optimization and responsive design
+- Installation and setup guides
+
+QUICK START:
+1. Download the harmony-counseling-complete.tar.gz file
+2. Extract: tar -xzf harmony-counseling-complete.tar.gz
+3. Install Flask: pip install flask
+4. Run: python run.py
+5. Open: http://localhost:5000
+
+CUSTOMIZATION:
+- Update counselor name, photo, and credentials in index.html
+- Change contact information (phone, email, address)
+- Modify services and pricing in the Services section
+- Add your professional photos
+- Customize colors in static/css/style.css
+
+FEATURES INCLUDED:
+✓ Homepage with hero section and professional introduction
+✓ About page with counselor background and qualifications  
+✓ Services page with 6 counseling options and pricing
+✓ Contact page with working form and office information
+✓ Booking system for online appointment scheduling
+✓ Testimonials from satisfied clients
+✓ Resources section with blog articles and downloads
+✓ FAQ section with common questions
+✓ Newsletter signup with email integration
+✓ Mobile-responsive design for all devices
+✓ SEO optimized for search engines
+
+TECHNOLOGY:
+- Frontend: HTML5, CSS3, JavaScript
+- Backend: Python Flask
+- Database: SQLite  
+- Email: SMTP integration
+- Responsive design for mobile/tablet/desktop
+
+SUPPORT FILES:
+- README.md - Complete documentation
+- INSTALLATION.md - Step-by-step setup guide
+- replit.md - Project architecture details
+
+The website is production-ready and includes all the features you requested for a professional marriage counseling practice. Simply customize the content with your information and you'll have a complete online presence!
+
+For questions or customization help, refer to the included documentation files.

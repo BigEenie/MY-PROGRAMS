@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>UI Marketplace</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    emailjs.init("wgJrDGyhJ4qdw1ijA");
+    window.EMAILJS_SERVICE_ID = 'service_ms8akfr';
+    window.EMAILJS_OTP_TEMPLATE = 'template_rqcl4sf';
+    window.EMAILJS_RESET_TEMPLATE = 'template_lwx5vgl';
+  </script>
+
+  <style>
+    :root {
+      --bg-color: #121a2b;
+      --container-color: #1f2a44;
+      --text-color: #e0e0e0;
+      --input-bg: #2a3a60;
+      --input-focus: #3a4a7a;
+      --border-color: #375a7f;
+      --accent-color: #ffa726;
+      --accent-hover: #fb8c00;
+      --shadow-color: rgba(255, 167, 38, 0.6);
+      --secondary-text: #bbb;
+      --error-color: #ff6b6b;
+      --success-color: #4caf50;
+    }
+    .light-mode {
+      --bg-color: #f5f5f5;
+      --container-color: #ffffff;
+      --text-color: #333333;
+      --input-bg: #f0f0f0;
+      --accent-color: #ff8f00;
+      --secondary-text: #666;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      transition: all 0.4s ease;
+    }
+    .container {
+      background-color: var(--container-color);
+      padding: 25px;
+      border-radius: 12px;
+      width: 380px;
+      max-width: 95vw;
+      text-align: center;
+      box-shadow: 0 0 15px var(--shadow-color);
+      transition: all 0.4s ease;
+      box-sizing: border-box;
+      position: relative;
+    }
+    .admin-container {
+      width: 600px;
+      max-width: 95vw;
+    }
+    .logo-roll {
+      width: 140px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      animation: roll 4s linear infinite;
+    }
+    @keyframes roll {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .animated-text {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 30px;
+    }
+    .animated-text span {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSlideUp 0.5s forwards;
+    }
+    @keyframes fadeSlideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      margin-top: 14px;
+      border-radius: 8px;
+      border: 1.5px solid var(--border-color);
+      font-size: 16px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+      outline: none;
+      box-sizing: border-box;
+    }
+    input:focus {
+      border-color: var(--accent-color);
+      background-color: var(--input-focus);
+    }
+    .password-container {
+      position: relative;
+    }
+    .password-toggle {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color: var(--secondary-text);
+    }
+    button {
+      background-color: var(--accent-color);
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+      width: 100%;
+      margin-top: 20px;
+      color: #121212;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background-color: var(--accent-hover);
+    }
+    button:disabled {
+      background-color: var(--secondary-text);
+      cursor: not-allowed;
+    }
+    .toggle {
+      margin-top: 20px;
+      font-size: 14px;
+      color: var(--secondary-text);
+    }
+    .toggle button {
+      background: none;
+      border: none;
+      color: var(--accent-color);
+      cursor: pointer;
+      font-weight: 600;
+      padding: 0;
+      width: auto;
+      display: inline;
+    }
+    .error-message {
+      color: var(--error-color);
+      font-size: 13px;
+      margin-top: 5px;
+      text-align: left;
+    }
+    .success-message {
+      color: var(--success-color);
+      font-size: 13px;
+      margin-top: 5px;
+      text-align: left;
+    }
+    .theme-toggle-container {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .theme-toggle {
+      background: none;
+      border: none;
+      color: var(--accent-color);
+      cursor: pointer;
+      font-size: 24px;
+      padding: 5px;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+    .captcha-container {
+      margin: 15px 0;
+      padding: 10px;
+      background: var(--input-bg);
+      border-radius: 8px;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: center;
+      margin-top: 15px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .checkbox-label input {
+      margin-right: 8px;
+      width: 18px;
+      height: 18px;
+    }
+    .admin-login-btn {
+      margin-top: 15px;
+      background: none;
+      border: none;
+      color: var(--accent-color);
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 14px;
+      width: auto;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 12px;
+      color: var(--secondary-text);
+      border-top: 1px solid var(--border-color);
+      padding-top: 15px;
+    }
+    .footer a {
+      color: var(--accent-color);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function AnimatedText({ text }) {
+      return (
+        <div className="animated-text">
+          {text.split('').map((char, i) => (
+            <span key={i} style={{ animationDelay: i * 0.1 + 's' }}>{char}</span>
+          ))}
+        </div>
+      );
+    }
+
+    function SplashScreen() {
+      return (
+        <div className="container">
+          <img
+            src="https://files.catbox.moe/3pxric.png"
+            alt="UI Marketplace Logo"
+            className="logo-roll"
+          />
+          <AnimatedText text="University of Ibadan" />
+          <AnimatedText text="Marketplace" />
+        </div>
+      );
+    }
+
+    function SignInForm({ robotChecked, setRobotChecked }) {
+      const [email, setEmail] = useState('');
+      const [password, setPassword] = useState('');
+      const [showPassword, setShowPassword] = useState(false);
+      const [error, setError] = useState('');
+      const [captcha] = useState({ question: "3 + 5", answer: "8" });
+      const [captchaAnswer, setCaptchaAnswer] = useState('');
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        setError('');
+        
+        if (!email || !password) {
+          setError('Please fill in all fields');
+          return;
+        }
+        
+        if (captchaAnswer !== captcha.answer) {
+          setError('CAPTCHA answer is incorrect');
+          return;
+        }
+        
+        if (!robotChecked) {
+          setError('Please confirm you are not a robot');
+          return;
+        }
+
+        setError('Login functionality ready for backend integration');
+      };
+
+      return (
+        <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <div className="password-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+            <i 
+              className={'password-toggle fas ' + (showPassword ? 'fa-eye-slash' : 'fa-eye')}
+              onClick={() => setShowPassword(!showPassword)}
+            />
+          </div>
+          <div className="captcha-container">
+            <p>Solve: {captcha.question} = ?</p>
+            <input
+              type="text"
+              placeholder="Your answer"
+              value={captchaAnswer}
+              onChange={(e) => setCaptchaAnswer(e.target.value)}
+              required
+            />
+          </div>
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={robotChecked}
+              onChange={(e) => setRobotChecked(e.target.checked)}
+            />
+            I am not a robot
+          </label>
+          {error && <div className="error-message">{error}</div>}
+          <button type="submit">Sign In</button>
+        </form>
+      );
+    }
+
+    function SignUpForm({ robotChecked, setRobotChecked }) {
+      const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        matricNumber: '',
+        password: '',
+        confirmPassword: ''
+      });
+      const [error, setError] = useState('');
+      const [success, setSuccess] = useState('');
+      const [showPassword, setShowPassword] = useState(false);
+      const [captcha] = useState({ question: "7 + 8", answer: "15" });
+      const [captchaAnswer, setCaptchaAnswer] = useState('');
+
+      const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+      };
+
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        setError('');
+        setSuccess('');
+
+        if (!formData.firstName || !formData.lastName || !formData.email || 
+            !formData.phone || !formData.matricNumber || !formData.password) {
+          setError('Please fill in all required fields');
+          return;
+        }
+
+        if (formData.password !== formData.confirmPassword) {
+          setError('Passwords do not match');
+          return;
+        }
+
+        if (captchaAnswer !== captcha.answer) {
+          setError('CAPTCHA answer is incorrect');
+          return;
+        }
+
+        if (!robotChecked) {
+          setError('Please confirm you are not a robot');
+          return;
+        }
+
+        setSuccess('Registration functionality ready for backend integration');
+      };
+
+      return (
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value={formData.firstName}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={formData.lastName}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={formData.email}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="tel"
+            name="phone"
+            placeholder="Phone Number"
+            value={formData.phone}
+            onChange={handleInputChange}
+            required
+          />
+          <input
+            type="text"
+            name="matricNumber"
+            placeholder="Matric Number"
+            value={formData.matricNumber}
+            onChange={handleInputChange}
+            required
+          />
+          <div className="password-container">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Password"
+              value={formData.password}
+              onChange={handleInputChange}
+              required
+            />
+            <i 
+              className={'password-toggle fas ' + (showPassword ? 'fa-eye-slash' : 'fa-eye')}
+              onClick={() => setShowPassword(!showPassword)}
+            />
+          </div>
+          <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm Password"
+            value={formData.confirmPassword}
+            onChange={handleInputChange}
+            required
+          />
+          <div className="captcha-container">
+            <p>Solve: {captcha.question} = ?</p>
+            <input
+              type="text"
+              placeholder="Your answer"
+              value={captchaAnswer}
+              onChange={(e) => setCaptchaAnswer(e.target.value)}
+              required
+            />
+          </div>
+          <label className="checkbox-label">
+            <input
+              type="checkbox"
+              checked={robotChecked}
+              onChange={(e) => setRobotChecked(e.target.checked)}
+            />
+            I am not a robot
+          </label>
+          {error && <div className="error-message">{error}</div>}
+          {success && <div className="success-message">{success}</div>}
+          <button type="submit">Sign Up</button>
+        </form>
+      );
+    }
+
+    function App() {
+      const [showSplash, setShowSplash] = useState(true);
+      const [isLogin, setIsLogin] = useState(true);
+      const [robotChecked, setRobotChecked] = useState(false);
+      const [darkMode, setDarkMode] = useState(true);
+
+      useEffect(() => {
+        const timer = setTimeout(() => setShowSplash(false), 4000);
+        return () => clearTimeout(timer);
+      }, []);
+
+      useEffect(() => {
+        if (darkMode) {
+          document.documentElement.classList.remove('light-mode');
+        } else {
+          document.documentElement.classList.add('light-mode');
+        }
+      }, [darkMode]);
+
+      const toggleForm = () => {
+        setIsLogin(!isLogin);
+        setRobotChecked(false);
+      };
+
+      const toggleTheme = () => {
+        setDarkMode(!darkMode);
+      };
+
+      if (showSplash) {
+        return <SplashScreen />;
+      }
+
+      return (
+        <div className="container">
+          <div className="theme-toggle-container">
+            <button 
+              className="theme-toggle" 
+              onClick={toggleTheme}
+            >
+              {darkMode ? '☀️' : '🌙'}
+            </button>
+          </div>
+          <h2>{isLogin ? "Sign In" : "Sign Up"}</h2>
+          {isLogin ? (
+            <SignInForm robotChecked={robotChecked} setRobotChecked={setRobotChecked} />
+          ) : (
+            <SignUpForm robotChecked={robotChecked} setRobotChecked={setRobotChecked} />
+          )}
+          <div className="toggle">
+            {isLogin ? "Don't have an account?" : "Already have an account?"}
+            <br />
+            <button onClick={toggleForm}>
+              {isLogin ? "Sign Up" : "Sign In"}
+            </button>
+          </div>
+          <button className="admin-login-btn">
+            Admin Login
+          </button>
+          <div className="footer">
+            Developed by <a href="https://wa.me/2348135138141" target="_blank">Isaac Arinola</a> and <a href="https://wa.me/2348108357213" target="_blank">Emmyfest</a><br />
+            All rights reserved | University of Ibadan
+          </div>
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
